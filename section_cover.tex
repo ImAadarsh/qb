@@ -1,0 +1,31 @@
+% Section Cover Page Template
+\newcommand{\sectioncover}[3]{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \begin{center}
+    \vspace*{3cm}
+    {\huge\bfseries\textcolor{questblue}{#1}\par}
+    \vspace{1cm}
+    {\Large\textit{#2}\par}
+    \vspace{2cm}
+    \begin{tcolorbox}[
+      enhanced,
+      colback=white,
+      colframe=questorange,
+      arc=5mm,
+      boxrule=0.5mm,
+      width=0.7\textwidth,
+      halign=center,
+      valign=center,
+      height=6cm
+    ]
+      \begin{center}
+        {\large #3\par}
+      \end{center}
+    \end{tcolorbox}
+    \vspace{2cm}
+    % Uncomment and modify to include an icon/image for the section
+    % \includegraphics[width=0.2\textwidth]{#1_icon.png}
+  \end{center}
+  \cleardoublepage
+} 

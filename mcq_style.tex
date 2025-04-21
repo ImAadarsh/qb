@@ -1,0 +1,75 @@
+% MCQ Styling
+
+% Box styling for questions
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{amssymb} % For special symbols
+
+% Define MCQ box style - make it non-breakable and more compact
+\newtcolorbox{mcqbox}{
+  enhanced,
+  breakable=false, % Prevent breaking across pages
+  colback=white,
+  colframe=questblue,
+  arc=2mm,
+  boxrule=0.5mm,
+  leftrule=2mm,
+  title={\textbf{Question \thetotalcounter}},
+  fonttitle=\bfseries\large,
+  coltitle=white,
+  colbacktitle=questblue,
+  attach boxed title to top left={yshift=-1mm, xshift=2mm},
+  boxed title style={sharp corners, boxrule=0pt},
+  before={\par\vspace{0.1cm}}, % Reduced spacing before
+  after={\par\vspace{0.1cm}},  % Reduced spacing after
+}
+
+% Define answer keys section with more compact layout
+\newcommand{\answerkey}{%
+  \chapter*{Answer Key}
+  \addcontentsline{toc}{chapter}{Answer Key}
+  \begin{center}
+    \Large\bfseries\textcolor{questblue}{Answer Key}
+  \end{center}
+  \vspace{0.5cm} % Reduced spacing
+  \begin{multicols}{4}
+    \begin{enumerate}
+      \setcounter{enumi}{0}
+      \setlength{\itemsep}{0pt} % Compact item spacing
+      \setlength{\parskip}{0pt} % Compact paragraph spacing
+}
+
+\newcommand{\endanswerkey}{%
+    \end{enumerate}
+  \end{multicols}
+}
+
+% Command for adding an answer - with symbol but no content highlighting
+\newcommand{\answer}[1]{%
+  \item Q\theenumi: \textcolor{questblue}{$\blacksquare$} #1
+}
+
+% Option styling - using same symbol for all options
+\newcommand{\correctoption}[1]{%
+  \item[\textcolor{questblue}{$\blacksquare$} \alph{enumi}] #1
+}
+
+\newcommand{\incorrectoption}[1]{%
+  \item[\textcolor{questblue}{$\blacksquare$} \alph{enumi}] #1
+}
+
+% Define enhanced MCQ environment - more compact with no page breaks
+\newenvironment{enhancedmcq}[2][]
+{%
+  \stepcounter{questioncounter}%
+  \begin{mcqbox}%
+  \textbf{#2}\par\vspace{0.1cm}% Reduced spacing
+  \ifstrempty{#1}{}{\textit{#1}\par\vspace{0.05cm}}% Reduced spacing
+  \begin{enumerate}[label=\alph*.,itemsep=0.05cm,parsep=0pt,leftmargin=1.5cm]% Reduced spacing
+}
+{%
+  \end{enumerate}%
+  \end{mcqbox}%
+  \stepcounter{totalcounter}%
+  \vspace{0.2cm}% Reduced spacing
+} 

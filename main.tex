@@ -1,0 +1,382 @@
+% The Ultimate Quest - LaTeX Book
+\documentclass[12pt,a4paper]{book}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage{etoolbox}
+\usepackage{lipsum} % For demo text
+\usepackage{pdfpages} % For including PDF pages
+\usepackage{tcolorbox} % For colorful boxes
+
+% Page geometry - tighter margins for more content per page
+\geometry{margin=0.8in}
+
+% Color definitions
+\definecolor{questblue}{RGB}{0,72,153}
+\definecolor{questorange}{RGB}{255,127,0}
+
+% Header and footer styling - more compact
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO,RE]{The Ultimate Quest}
+\fancyhead[RO,LE]{\thepage}
+\fancyfoot[C]{\textit{Engage | Explore | Excel}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\setlength{\headheight}{13.6pt}
+
+% Custom chapter and section styling - more compact
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries\color{questblue}}
+{\chaptertitlename\ \thechapter}{10pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{30pt}{20pt}
+
+\titleformat{\section}
+{\normalfont\Large\bfseries\color{questblue}}
+{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{2.5ex plus 1ex minus .2ex}{1.3ex plus .2ex}
+
+% Global paragraph spacing reduction
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0em}
+
+% Adjust float placement to be less strict
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.7}
+
+% MCQ counter setup
+\newcounter{questioncounter}[section]
+\newcounter{totalcounter}
+\setcounter{totalcounter}{1} % Starting from 1
+
+% Choose MCQ style: 
+% For squares, uncomment the next line:
+\input{mcq_style}
+
+\begin{document}
+
+% Front Cover
+\thispagestyle{empty}
+\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{front_cover.png}
+\clearpage
+
+% Remove frontmatter/mainmatter distinction to avoid extra pages
+\chapter{Introduction to The Ultimate Quest}
+\section{About This Book}
+This book is designed to challenge your knowledge across Science, Technology, Engineering, Arts \& Mathematics (STEAM). Each section contains multiple-choice questions to test your understanding and expand your horizons.
+
+\lipsum[1]
+
+\chapter{Science}
+\section{Physics}
+
+\begin{enhancedmcq}[Fundamental forces]{Which of the following is a fundamental force in nature?}
+    \incorrectoption{Magnetic force}
+    \incorrectoption{Nuclear force}
+    \correctoption{Gravitational force}
+    \incorrectoption{Centrifugal force}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[SI Units]{What is the SI unit of electric current?}
+    \incorrectoption{Volt}
+    \correctoption{Ampere}
+    \incorrectoption{Ohm}
+    \incorrectoption{Coulomb}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Famous Scientists]{Which scientist proposed the theory of relativity?}
+    \incorrectoption{Isaac Newton}
+    \incorrectoption{Niels Bohr}
+    \correctoption{Albert Einstein}
+    \incorrectoption{Marie Curie}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Light]{What is the approximate speed of light in a vacuum?}
+    \incorrectoption{300,000 km/h}
+    \incorrectoption{3,000 km/s}
+    \correctoption{300,000 km/s}
+    \incorrectoption{30,000 km/s}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Electromagnetism]{Which scientist discovered electromagnetic induction?}
+    \incorrectoption{Thomas Edison}
+    \correctoption{Michael Faraday}
+    \incorrectoption{Nikola Tesla}
+    \incorrectoption{James Clerk Maxwell}
+\end{enhancedmcq}
+
+\section{Chemistry}
+
+\begin{enhancedmcq}[Chemical Elements]{What is the chemical symbol for gold?}
+    \incorrectoption{Go}
+    \incorrectoption{Gd}
+    \correctoption{Au}
+    \incorrectoption{Ag}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Periodic Table]{Which of the following is a noble gas?}
+    \incorrectoption{Nitrogen}
+    \incorrectoption{Oxygen}
+    \correctoption{Helium}
+    \incorrectoption{Hydrogen}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Acid-Base Chemistry]{What is the pH of a neutral solution?}
+    \incorrectoption{0}
+    \correctoption{7}
+    \incorrectoption{14}
+    \incorrectoption{1}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Chemical Bonds]{Which type of bond involves the sharing of electrons?}
+    \incorrectoption{Ionic bond}
+    \correctoption{Covalent bond}
+    \incorrectoption{Metallic bond}
+    \incorrectoption{Hydrogen bond}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Organic Chemistry]{What is the general formula for alkanes?}
+    \incorrectoption{C$_n$H$_{2n}$}
+    \correctoption{C$_n$H$_{2n+2}$}
+    \incorrectoption{C$_n$H$_{2n-2}$}
+    \incorrectoption{C$_n$H$_n$}
+\end{enhancedmcq}
+
+\chapter{Technology}
+\section{Computer Science}
+
+\begin{enhancedmcq}[Programming Languages]{Which of the following is a high-level programming language?}
+    \incorrectoption{Assembly}
+    \incorrectoption{Machine code}
+    \correctoption{Python}
+    \incorrectoption{Binary}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Computer Hardware]{What does CPU stand for?}
+    \correctoption{Central Processing Unit}
+    \incorrectoption{Computer Personal Unit}
+    \incorrectoption{Central Program Utility}
+    \incorrectoption{Control Processing Unit}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Computing History]{Who is considered the father of computer science?}
+    \incorrectoption{Bill Gates}
+    \incorrectoption{Steve Jobs}
+    \correctoption{Alan Turing}
+    \incorrectoption{Mark Zuckerberg}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Networking]{What does HTTP stand for?}
+    \incorrectoption{High Transfer Text Protocol}
+    \correctoption{Hypertext Transfer Protocol}
+    \incorrectoption{Hypertext Technical Processing}
+    \incorrectoption{High Technical Transfer Protocol}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Operating Systems]{Which of the following is NOT an operating system?}
+    \incorrectoption{Linux}
+    \incorrectoption{Windows}
+    \incorrectoption{macOS}
+    \correctoption{Oracle}
+\end{enhancedmcq}
+
+\chapter{Engineering}
+\section{Mechanical Engineering}
+
+\begin{enhancedmcq}[Fluid Mechanics]{What is the principle that describes the behavior of an ideal fluid flowing through a pipe?}
+    \incorrectoption{Newton's Law}
+    \correctoption{Bernoulli's Principle}
+    \incorrectoption{Archimedes' Principle}
+    \incorrectoption{Hook's Law}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Simple Machines]{Which of the following is NOT a type of simple machine?}
+    \incorrectoption{Lever}
+    \incorrectoption{Pulley}
+    \incorrectoption{Wedge}
+    \correctoption{Battery}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Thermodynamics]{Which law of thermodynamics states that energy cannot be created or destroyed in an isolated system?}
+    \correctoption{First law}
+    \incorrectoption{Second law}
+    \incorrectoption{Third law}
+    \incorrectoption{Zeroth law}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Materials Science]{Which material property describes its ability to withstand deformation under load?}
+    \incorrectoption{Ductility}
+    \incorrectoption{Malleability}
+    \correctoption{Strength}
+    \incorrectoption{Toughness}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Engineering Design]{Which of the following is NOT a typical stage in the engineering design process?}
+    \incorrectoption{Problem definition}
+    \incorrectoption{Concept generation}
+    \incorrectoption{Prototyping}
+    \correctoption{Marketing}
+\end{enhancedmcq}
+
+\chapter{Arts}
+\section{History of Art}
+
+\begin{enhancedmcq}[Famous Paintings]{Who painted the Mona Lisa?}
+    \incorrectoption{Michelangelo}
+    \correctoption{Leonardo da Vinci}
+    \incorrectoption{Pablo Picasso}
+    \incorrectoption{Vincent van Gogh}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Art Movements]{Which art movement is characterized by dreamlike and incongruous images?}
+    \incorrectoption{Impressionism}
+    \incorrectoption{Cubism}
+    \correctoption{Surrealism}
+    \incorrectoption{Realism}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Architecture]{Which architectural style features flying buttresses and pointed arches?}
+    \incorrectoption{Classical}
+    \incorrectoption{Baroque}
+    \correctoption{Gothic}
+    \incorrectoption{Art Deco}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Literature]{Who wrote "Pride and Prejudice"?}
+    \incorrectoption{Charlotte Brontë}
+    \incorrectoption{Emily Brontë}
+    \incorrectoption{Virginia Woolf}
+    \correctoption{Jane Austen}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Music]{Which of the following composers was deaf when he composed his Ninth Symphony?}
+    \incorrectoption{Wolfgang Amadeus Mozart}
+    \correctoption{Ludwig van Beethoven}
+    \incorrectoption{Johann Sebastian Bach}
+    \incorrectoption{Franz Joseph Haydn}
+\end{enhancedmcq}
+
+\chapter{Mathematics}
+\section{Algebra}
+
+\begin{enhancedmcq}[Linear Equations]{What is the value of $x$ in the equation $2x + 5 = 15$?}
+    \correctoption{5}
+    \incorrectoption{10}
+    \incorrectoption{7.5}
+    \incorrectoption{5.5}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Quadratic Equations]{Which of the following is NOT a solution to $x^2 - 4 = 0$?}
+    \incorrectoption{2}
+    \incorrectoption{-2}
+    \correctoption{0}
+    \incorrectoption{$\sqrt{4}$}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Functions]{What is the range of the function $f(x) = \sqrt{x}$?}
+    \incorrectoption{All real numbers}
+    \incorrectoption{All positive real numbers}
+    \correctoption{All non-negative real numbers}
+    \incorrectoption{All negative real numbers}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Sequences]{What is the next number in the Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8, ?}
+    \incorrectoption{12}
+    \incorrectoption{11}
+    \correctoption{13}
+    \incorrectoption{15}
+\end{enhancedmcq}
+
+\section{Geometry}
+
+\begin{enhancedmcq}[Triangles]{What is the sum of angles in a triangle?}
+    \incorrectoption{$90^\circ$}
+    \correctoption{$180^\circ$}
+    \incorrectoption{$270^\circ$}
+    \incorrectoption{$360^\circ$}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Circles]{What is the formula for the area of a circle?}
+    \incorrectoption{$\pi r$}
+    \incorrectoption{$2\pi r$}
+    \correctoption{$\pi r^2$}
+    \incorrectoption{$2\pi r^2$}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Polygons]{How many sides does a heptagon have?}
+    \incorrectoption{5}
+    \incorrectoption{6}
+    \correctoption{7}
+    \incorrectoption{8}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Coordinate Geometry]{What is the distance between the points (0,0) and (3,4)?}
+    \incorrectoption{7}
+    \incorrectoption{3.5}
+    \correctoption{5}
+    \incorrectoption{6}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}[Solid Geometry]{What is the volume of a cube with side length $s$?}
+    \incorrectoption{$s^2$}
+    \incorrectoption{$6s^2$}
+    \correctoption{$s^3$}
+    \incorrectoption{$4s^3$}
+\end{enhancedmcq}
+
+% Answer key section
+\chapter{Answer Key}
+
+\answerkey
+\answer{c} % Fundamental forces
+\answer{b} % SI Units
+\answer{c} % Famous Scientists
+\answer{c} % Light
+\answer{b} % Electromagnetism
+\answer{c} % Chemical Elements
+\answer{c} % Periodic Table
+\answer{b} % Acid-Base Chemistry
+\answer{b} % Chemical Bonds
+\answer{b} % Organic Chemistry
+\answer{c} % Programming Languages
+\answer{a} % Computer Hardware
+\answer{c} % Computing History
+\answer{b} % Networking
+\answer{d} % Operating Systems
+\answer{b} % Fluid Mechanics
+\answer{d} % Simple Machines
+\answer{a} % Thermodynamics
+\answer{c} % Materials Science
+\answer{d} % Engineering Design
+\answer{b} % Famous Paintings
+\answer{c} % Art Movements
+\answer{c} % Architecture
+\answer{d} % Literature
+\answer{b} % Music
+\answer{a} % Linear Equations
+\answer{c} % Quadratic Equations
+\answer{c} % Functions
+\answer{c} % Sequences
+\answer{b} % Triangles
+\answer{c} % Circles
+\answer{c} % Polygons
+\answer{c} % Coordinate Geometry
+\answer{c} % Solid Geometry
+\endanswerkey
+
+% Back Cover
+\clearpage
+\thispagestyle{empty}
+\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{backcover.png}
+
+\end{document} 

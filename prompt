@@ -1,0 +1,67 @@
+
+# Prompt for LLM to Convert Markdown Question Files to LaTeX Book
+
+I need you to convert several markdown question files into a complete LaTeX book for "The Ultimate Quest" quiz book. Use the existing LaTeX style files in the current folder (mcq_style.tex, section_cover.tex, and titlepage.tex) rather than creating new ones.
+
+## Input Files
+The source files are in the ./Question directory with names like "SCIENCE 400 questions.md", "ARTS 400 questions.md", etc. Each file has multiple sections marked with `**Section Title**` followed by numbered questions with lettered options.
+
+## Expected Output
+Generate a single LaTeX file that:
+1. Maintains chapter organization based on the file names (SCIENCE, ARTS, etc.)
+2. Preserves section titles from the markdown headings
+3. Formats each question using the enhancedmcq environment
+4. Collects all answers for the answer key section
+5. Does not visually distinguish correct answers within questions
+6. Ensures questions don't break across pages
+
+## Structure of a Question
+Convert questions like this:
+```markdown
+1. Which art movement is characterized by dreamlike imagery?  
+   a) Impressionism b) Surrealism c) Cubism
+
+
+1. Who wrote the epic poem "The Aeneid", and what is its significance in Roman literature?
+
+   1) Virgil
+
+   2) Homer
+
+   3) Ovid
+
+
+
+```
+
+Into LaTeX format like this:
+```latex
+\begin{enhancedmcq}[Question 1]{Which art movement is characterized by dreamlike imagery?}
+    \incorrectoption{Impressionism}
+    \incorrectoption{Surrealism}
+    \incorrectoption{Cubism}
+\end{enhancedmcq}
+```
+
+## Answer Key Format
+Parse answer sections like:
+```markdown
+**Answer Key**
+1. b - Surrealism
+2. c - Pablo Picasso
+```
+
+And generate LaTeX answer entries:
+```latex
+\answer{b}
+\answer{c}
+```
+
+## Complete Document Structure
+Use the existing files and build a document with:
+1. Proper front matter (titlepage, table of contents)
+2. Section cover pages between major topics
+3. Chapters and sections organized by topic
+4. Answer key at the end
+
+Please process all the files and generate the complete LaTeX document for compilation.
