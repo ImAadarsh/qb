@@ -13,8 +13,6 @@
 \usepackage{multicol}
 \usepackage{etoolbox}
 \usepackage{lipsum} % For demo text
-\usepackage{pdfpages} % For including PDF pages
-\usepackage{tcolorbox} % For colorful boxes
 
 % Page geometry - tighter margins for more content per page
 \geometry{margin=0.8in}
@@ -62,20 +60,60 @@
 % Choose MCQ style: 
 % For squares, uncomment the next line:
 \input{mcq_style}
+% For circles, uncomment the next line and comment the one above:
+%\input{mcq_style_alt}
+% For arrows, uncomment the next line and comment the two above:
+%\input{mcq_style_arrow}
+
+\input{section_cover}
+
+% Adjust section cover spacing
+\makeatletter
+\renewcommand{\sectioncover}[3]{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \begin{center}
+    \vspace*{2cm}
+    {\huge\bfseries\textcolor{questblue}{#1}\par}
+    \vspace{0.7cm}
+    {\Large\textit{#2}\par}
+    \vspace{1.2cm}
+    \begin{tcolorbox}[
+      enhanced,
+      colback=white,
+      colframe=questorange,
+      arc=5mm,
+      boxrule=0.5mm,
+      width=0.7\textwidth,
+      halign=center,
+      valign=center,
+      height=5cm
+    ]
+      \begin{center}
+        {\large #3\par}
+      \end{center}
+    \end{tcolorbox}
+    \vspace{1.5cm}
+  \end{center}
+  \cleardoublepage
+}
+\makeatother
 
 \begin{document}
 
-% Front Cover
-\thispagestyle{empty}
-\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{front_cover.png}
-\clearpage
+\frontmatter
+\input{titlepage}
+\tableofcontents
 
-% Remove frontmatter/mainmatter distinction to avoid extra pages
+\mainmatter
+
 \chapter{Introduction to The Ultimate Quest}
 \section{About This Book}
 This book is designed to challenge your knowledge across Science, Technology, Engineering, Arts \& Mathematics (STEAM). Each section contains multiple-choice questions to test your understanding and expand your horizons.
 
 \lipsum[1]
+
+\sectioncover{SCIENCE}{Test your knowledge of the natural world}{Explore the wonders of Physics, Chemistry, Biology, and more as you tackle challenging questions about our universe and how it works.}
 
 \chapter{Science}
 \section{Physics}
@@ -152,6 +190,8 @@ This book is designed to challenge your knowledge across Science, Technology, En
     \incorrectoption{C$_n$H$_n$}
 \end{enhancedmcq}
 
+\sectioncover{TECHNOLOGY}{Explore the digital revolution}{From programming languages to computer architecture, test your knowledge of the technologies that power our modern world.}
+
 \chapter{Technology}
 \section{Computer Science}
 
@@ -189,6 +229,8 @@ This book is designed to challenge your knowledge across Science, Technology, En
     \incorrectoption{macOS}
     \correctoption{Oracle}
 \end{enhancedmcq}
+
+\sectioncover{ENGINEERING}{Building our world}{Discover the principles and innovations behind mechanical, electrical, civil, and chemical engineering that shape our infrastructure and daily lives.}
 
 \chapter{Engineering}
 \section{Mechanical Engineering}
@@ -228,6 +270,8 @@ This book is designed to challenge your knowledge across Science, Technology, En
     \correctoption{Marketing}
 \end{enhancedmcq}
 
+\sectioncover{ARTS}{Celebrating human creativity}{From visual arts to literature, music, and history, explore the expressions of human creativity and cultural heritage.}
+
 \chapter{Arts}
 \section{History of Art}
 
@@ -265,6 +309,8 @@ This book is designed to challenge your knowledge across Science, Technology, En
     \incorrectoption{Johann Sebastian Bach}
     \incorrectoption{Franz Joseph Haydn}
 \end{enhancedmcq}
+
+\sectioncover{MATHEMATICS}{The language of the universe}{Challenge yourself with questions about numbers, patterns, shapes, and the mathematical principles that underpin all sciences.}
 
 \chapter{Mathematics}
 \section{Algebra}
@@ -335,7 +381,7 @@ This book is designed to challenge your knowledge across Science, Technology, En
 \end{enhancedmcq}
 
 % Answer key section
-\chapter{Answer Key}
+\sectioncover{ANSWER KEY}{Check your knowledge}{Review your answers and track your progress through each section of The Ultimate Quest.}
 
 \answerkey
 \answer{c} % Fundamental forces
@@ -373,10 +419,5 @@ This book is designed to challenge your knowledge across Science, Technology, En
 \answer{c} % Coordinate Geometry
 \answer{c} % Solid Geometry
 \endanswerkey
-
-% Back Cover
-\clearpage
-\thispagestyle{empty}
-\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{backcover.png}
 
 \end{document} 
