@@ -1,0 +1,1613 @@
+% The Ultimate Quest - LaTeX Book
+\documentclass[12pt,a4paper]{book}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage{etoolbox}
+\usepackage{lipsum} % For demo text
+
+% Page geometry - tighter margins for more content per page
+\geometry{margin=0.8in}
+
+% Color definitions
+\definecolor{questblue}{RGB}{0,72,153}
+\definecolor{questorange}{RGB}{255,127,0}
+
+% Header and footer styling - more compact
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO,RE]{The Ultimate Quest}
+\fancyhead[RO,LE]{\thepage}
+\fancyfoot[C]{\textit{Engage | Explore | Excel}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\setlength{\headheight}{13.6pt}
+
+% Custom chapter and section styling - more compact
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries\color{questblue}}
+{\chaptertitlename\ \thechapter}{10pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{30pt}{20pt}
+
+\titleformat{\section}
+{\normalfont\Large\bfseries\color{questblue}}
+{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{2.5ex plus 1ex minus .2ex}{1.3ex plus .2ex}
+
+% Global paragraph spacing reduction
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0em}
+
+% Adjust float placement to be less strict
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.7}
+
+% MCQ counter setup
+\newcounter{questioncounter}[section]
+\newcounter{totalcounter}
+\setcounter{totalcounter}{1} % Starting from 1
+
+% Choose MCQ style: 
+% For squares, uncomment the next line:
+\input{mcq_style}
+% For circles, uncomment the next line and comment the one above:
+%\input{mcq_style_alt}
+% For arrows, uncomment the next line and comment the two above:
+%\input{mcq_style_arrow}
+
+\input{section_cover}
+
+% Adjust section cover spacing
+\makeatletter
+\renewcommand{\sectioncover}[3]{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \begin{center}
+    \vspace*{2cm}
+    {\huge\bfseries\textcolor{questblue}{#1}\par}
+    \vspace{0.7cm}
+    {\Large\textit{#2}\par}
+    \vspace{1.2cm}
+    \begin{tcolorbox}[
+      enhanced,
+      colback=white,
+      colframe=questorange,
+      arc=5mm,
+      boxrule=0.5mm,
+      width=0.7\textwidth,
+      halign=center,
+      valign=center,
+      height=5cm
+    ]
+      \begin{center}
+        {\large #3\par}
+      \end{center}
+    \end{tcolorbox}
+    \vspace{1.5cm}
+  \end{center}
+  \cleardoublepage
+}
+\makeatother
+
+% Redefine the enhancedmcq environment to reduce spacing
+\makeatletter
+\renewenvironment{enhancedmcq}[2][]{%
+  \refstepcounter{questioncounter}%
+  \refstepcounter{totalcounter}%
+  \par\vspace{4pt}%
+  \noindent\textbf{\#\arabic{totalcounter}:} #2\par\vspace{2pt}%
+  \begin{minipage}{\linewidth}%
+}{%
+  \end{minipage}%
+  \par\vspace{8pt}%
+}
+\makeatother
+
+\begin{document}
+
+\frontmatter
+\input{titlepage}
+\tableofcontents
+
+\mainmatter
+
+\chapter{Introduction to The Ultimate Quest}
+\section{About This Book}
+This book is designed to challenge your knowledge across Science, Technology, Engineering, Arts \& Mathematics (STEAM). Each section contains multiple-choice questions to test your understanding and expand your horizons.
+
+\lipsum[1]
+
+\sectioncover{SCIENCE}{Test your knowledge of the natural world}{Explore the wonders of Physics, Chemistry, Biology, and more as you tackle challenging questions about our universe and how it works.}
+
+\chapter{Science}
+\section{Physics}
+
+\begin{enhancedmcq}{Which of the following is a fundamental force in nature?}
+    \incorrectoption{Magnetic force}
+    \incorrectoption{Nuclear force}
+    \correctoption{Gravitational force}
+    \incorrectoption{Centrifugal force}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the SI unit of electric current?}
+    \incorrectoption{Volt}
+    \correctoption{Ampere}
+    \incorrectoption{Ohm}
+    \incorrectoption{Coulomb}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which scientist proposed the theory of relativity?}
+    \incorrectoption{Isaac Newton}
+    \incorrectoption{Niels Bohr}
+    \correctoption{Albert Einstein}
+    \incorrectoption{Marie Curie}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the approximate speed of light in a vacuum?}
+    \incorrectoption{300,000 km/h}
+    \incorrectoption{3,000 km/s}
+    \correctoption{300,000 km/s}
+    \incorrectoption{30,000 km/s}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which scientist discovered electromagnetic induction?}
+    \incorrectoption{Thomas Edison}
+    \correctoption{Michael Faraday}
+    \incorrectoption{Nikola Tesla}
+    \incorrectoption{James Clerk Maxwell}
+\end{enhancedmcq}
+
+\section{Chemistry}
+
+\begin{enhancedmcq}{What is the chemical symbol for gold?}
+    \incorrectoption{Go}
+    \incorrectoption{Gd}
+    \correctoption{Au}
+    \incorrectoption{Ag}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which of the following is a noble gas?}
+    \incorrectoption{Nitrogen}
+    \incorrectoption{Oxygen}
+    \correctoption{Helium}
+    \incorrectoption{Hydrogen}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the pH of a neutral solution?}
+    \incorrectoption{0}
+    \correctoption{7}
+    \incorrectoption{14}
+    \incorrectoption{1}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which type of bond involves the sharing of electrons?}
+    \incorrectoption{Ionic bond}
+    \correctoption{Covalent bond}
+    \incorrectoption{Metallic bond}
+    \incorrectoption{Hydrogen bond}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the general formula for alkanes?}
+    \incorrectoption{C$_n$H$_{2n}$}
+    \correctoption{C$_n$H$_{2n+2}$}
+    \incorrectoption{C$_n$H$_{2n-2}$}
+    \incorrectoption{C$_n$H$_n$}
+\end{enhancedmcq}
+
+\sectioncover{TECHNOLOGY}{Explore the digital revolution}{From programming languages to computer architecture, test your knowledge of the technologies that power our modern world.}
+
+\chapter{Technology}
+\section{Computer Science}
+
+\begin{enhancedmcq}{Which of the following is a high-level programming language?}
+    \incorrectoption{Assembly}
+    \incorrectoption{Machine code}
+    \correctoption{Python}
+    \incorrectoption{Binary}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What does CPU stand for?}
+    \correctoption{Central Processing Unit}
+    \incorrectoption{Computer Personal Unit}
+    \incorrectoption{Central Program Utility}
+    \incorrectoption{Control Processing Unit}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who is considered the father of computer science?}
+    \incorrectoption{Bill Gates}
+    \incorrectoption{Steve Jobs}
+    \correctoption{Alan Turing}
+    \incorrectoption{Mark Zuckerberg}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What does HTTP stand for?}
+    \incorrectoption{High Transfer Text Protocol}
+    \correctoption{Hypertext Transfer Protocol}
+    \incorrectoption{Hypertext Technical Processing}
+    \incorrectoption{High Technical Transfer Protocol}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which of the following is NOT an operating system?}
+    \incorrectoption{Linux}
+    \incorrectoption{Windows}
+    \incorrectoption{macOS}
+    \correctoption{Oracle}
+\end{enhancedmcq}
+
+\sectioncover{ENGINEERING}{Building our world}{Discover the principles and innovations behind mechanical, electrical, civil, and chemical engineering that shape our infrastructure and daily lives.}
+
+\chapter{Engineering}
+\section{Mechanical Engineering}
+
+\begin{enhancedmcq}{What is the principle that describes the behavior of an ideal fluid flowing through a pipe?}
+    \incorrectoption{Newton's Law}
+    \correctoption{Bernoulli's Principle}
+    \incorrectoption{Archimedes' Principle}
+    \incorrectoption{Hook's Law}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which of the following is NOT a type of simple machine?}
+    \incorrectoption{Lever}
+    \incorrectoption{Pulley}
+    \incorrectoption{Wedge}
+    \correctoption{Battery}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which law of thermodynamics states that energy cannot be created or destroyed in an isolated system?}
+    \correctoption{First law}
+    \incorrectoption{Second law}
+    \incorrectoption{Third law}
+    \incorrectoption{Zeroth law}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which material property describes its ability to withstand deformation under load?}
+    \incorrectoption{Ductility}
+    \incorrectoption{Malleability}
+    \correctoption{Strength}
+    \incorrectoption{Toughness}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which of the following is NOT a typical stage in the engineering design process?}
+    \incorrectoption{Problem definition}
+    \incorrectoption{Concept generation}
+    \incorrectoption{Prototyping}
+    \correctoption{Marketing}
+\end{enhancedmcq}
+
+\sectioncover{ARTS}{Celebrating human creativity}{From visual arts to literature, music, and history, explore the expressions of human creativity and cultural heritage.}
+
+\chapter{Arts}
+\section{Visual Arts/Paintings}
+
+\begin{enhancedmcq}{Which art movement, characterized by dreamlike imagery and irrational scenes, is exemplified by Salvador Dalí's "The Persistence of Memory," featuring melting clocks?}
+    \incorrectoption{Impressionism}
+    \correctoption{Surrealism}
+    \incorrectoption{Cubism}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{``Guernica,'' a powerful anti-war painting depicting the bombing of a Basque town, was created by which influential Spanish artist?}
+    \incorrectoption{Diego Rivera}
+    \incorrectoption{Francisco Goya}
+    \correctoption{Pablo Picasso}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which artistic style, using small, distinct dots of color applied in patterns to form an image, is famously employed in Georges Seurat's ``A Sunday on La Grande Jatte''?}
+    \correctoption{Pointillism}
+    \incorrectoption{Fauvism}
+    \incorrectoption{Expressionism}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Jan van Eyck's ``Arnolfini Portrait'' is renowned for its realistic detail and symbolism. What innovation in painting technique is he often credited with pioneering?}
+    \incorrectoption{Sfumato}
+    \correctoption{Oil paint}
+    \incorrectoption{Fresco}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Often referred to as the greatest Mughal painter, which artist is renowned for his naturalistic depictions of animals and court scenes, as seen in the ``Baburnama''?}
+    \incorrectoption{Basawan}
+    \incorrectoption{Daswanth}
+    \correctoption{Mansur}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Known for capturing fleeting moments and atmospheric conditions, which French movement is exemplified by Claude Monet's "Impression, Sunrise"?}
+    \incorrectoption{Realism}
+    \correctoption{Impressionism}
+    \incorrectoption{Romanticism}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which artist, known for his expressive brushstrokes and emotional intensity, created "The Starry Night," a depiction of the view from his asylum window?}
+    \incorrectoption{Paul Cézanne}
+    \correctoption{Vincent van Gogh}
+    \incorrectoption{Edvard Munch}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{``The Birth of Venus,'' a masterpiece of the Italian Renaissance, was painted by which Florentine artist, known for his elegant and graceful figures?}
+    \incorrectoption{Leonardo da Vinci}
+    \incorrectoption{Michelangelo}
+    \correctoption{Sandro Botticelli}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Raja Ravi Varma, a pioneer of modern Indian art, is famous for his paintings depicting scenes from which Indian epics and mythology?}
+    \correctoption{Ramayana and Mahabharata}
+    \incorrectoption{Jataka Tales and Vedas}
+    \incorrectoption{Sangam literature}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which art style, breaking objects into fragments and reassembling them in an abstract form, is seen in Pablo Picasso's ``Les Demoiselles d'Avignon''?}
+    \incorrectoption{Expressionism}
+    \correctoption{Cubism}
+    \incorrectoption{Futurism}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Leonardo da Vinci's ``Mona Lisa'' is famed for its enigmatic smile and mastery of sfumato. What does ``sfumato'' refer to?}
+    \incorrectoption{Use of vibrant colors}
+    \correctoption{Blurring of outlines}
+    \incorrectoption{Detailed textures}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Known for its bold use of color and simplified forms, which movement is Henri Matisse, the French artist associated with, as seen in ``The Dance''?}
+    \incorrectoption{Surrealism}
+    \correctoption{Fauvism}
+    \incorrectoption{Dadaism}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{``The Night Watch,'' a large and dramatic group portrait, is a signature work by which Dutch Baroque painter, renowned for his use of light and shadow?}
+    \incorrectoption{Johannes Vermeer}
+    \correctoption{Rembrandt van Rijn}
+    \incorrectoption{Peter Paul Rubens}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{The Bengal School of Art, which promoted indigenous techniques and themes, was led by which influential Indian artist, known for his painting ``Bharat Mata''?}
+    \incorrectoption{Nandalal Bose}
+    \correctoption{Abanindranath Tagore}
+    \incorrectoption{Jamini Roy}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which art movement, emerging in Italy in the early 20th century, celebrated technology, speed, and the dynamism of modern life, as seen in Umberto Boccioni's ``Unique Forms of Continuity in Space''?}
+    \incorrectoption{Constructivism}
+    \correctoption{Futurism}
+    \incorrectoption{Suprematism}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Michelangelo's "The Creation of Adam," part of the Sistine Chapel ceiling, depicts a famous biblical scene. Which figures are represented in the painting?}
+    \incorrectoption{Adam and Eve}
+    \correctoption{God and Adam}
+    \incorrectoption{Jesus and John the Baptist}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Known for her self-portraits exploring themes of identity, pain, and the human body, which Mexican artist is celebrated for her surrealist and deeply personal works?}
+    \incorrectoption{Remedios Varo}
+    \correctoption{Frida Kahlo}
+    \incorrectoption{Leonora Carrington}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which Japanese art form, involving woodblock printing, became popular during the Edo period and influenced Impressionist artists like Edgar Degas and Mary Cassatt?}
+    \incorrectoption{Sumi-e}
+    \correctoption{Ukiyo-e}
+    \incorrectoption{Origami}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Amrita Sher-Gil, an important figure in Indian art, blended Western and Indian styles. Which themes did she often explore in her paintings of rural India?}
+    \incorrectoption{Nationalism and patriotism}
+    \correctoption{Poverty and social inequality}
+    \incorrectoption{Love and romance}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which Russian art movement, characterized by geometric shapes and abstraction, was founded by Kazimir Malevich, known for his "Black Square"?}
+    \incorrectoption{Constructivism}
+    \correctoption{Suprematism}
+    \incorrectoption{Realism}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Raphael's "The School of Athens" celebrates the pursuit of knowledge. Which ancient Greek philosophers are featured prominently in the painting?}
+    \incorrectoption{Socrates and Plato}
+    \correctoption{Plato and Aristotle}
+    \incorrectoption{Aristotle and Pythagoras}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{The Pop art movement, which embraced consumer culture, found one of its leaders in which American artist who immortalized Campbell's soup cans and Marilyn Monroe?}
+    \incorrectoption{Jackson Pollock}
+    \correctoption{Andy Warhol}
+    \incorrectoption{Roy Lichtenstein}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Leonardo da Vinci's Last Supper is a wall painting that depicts the last supper. In which building is it housed?}
+    \incorrectoption{St. Peter's Basilica}
+    \correctoption{Santa Maria delle Grazie}
+    \incorrectoption{Basilica di San Marco}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{The Fauvist art movement is well known for its use of color, which artist pioneered it?}
+    \correctoption{Henri Matisse}
+    \incorrectoption{Pablo Picasso}
+    \incorrectoption{Van Gogh}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which Indian painting style is well known for its use of bright colors and Hindu mythological themes?}
+    \correctoption{Tanjore}
+    \incorrectoption{Madhubani}
+    \incorrectoption{Pahari}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Vincent Van Gogh, the famous artist, was not always an artist- what was his primary occupation before that?}
+    \incorrectoption{Teacher}
+    \correctoption{Preacher}
+    \incorrectoption{Doctor}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the primary trait for which the Mughal paintings are so well known?}
+    \incorrectoption{Use of vibrant color}
+    \correctoption{Depiction of court life}
+    \incorrectoption{Intricate brushwork}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who painted the famous "Girl with the Pearl Earring"?}
+    \incorrectoption{Rembrandt}
+    \correctoption{Johannes Vermeer}
+    \incorrectoption{Leonardo da Vinci}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which art movement aimed to depict the world as it is?}
+    \incorrectoption{Dadaism}
+    \correctoption{Realism}
+    \incorrectoption{Surrealism}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the primary subject of the "Starry Night"?}
+    \incorrectoption{Van Gogh's self portrait}
+    \correctoption{Landscape and scenery}
+    \incorrectoption{His family}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which style was pioneered by Jackson Pollock?}
+    \correctoption{Abstract Expressionism}
+    \incorrectoption{Cubism}
+    \incorrectoption{Surrealism}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{How did Diego Rivera highlight the values of the Mexican people?}
+    \incorrectoption{by making war paintings}
+    \correctoption{by painting about their daily life}
+    \incorrectoption{by painting portraits}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which form of Indian paintings are done on cloth?}
+    \incorrectoption{Tanjore}
+    \incorrectoption{Warli}
+    \correctoption{Phad}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which one of these movements is best known for its focus on movement and motion?}
+    \correctoption{Futurism}
+    \incorrectoption{Cubism}
+    \incorrectoption{Dadaism}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{In which style was "The scream" painted?}
+    \incorrectoption{Surrealism}
+    \correctoption{Expressionism}
+    \incorrectoption{Cubism}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which country is known as the birth place of impressionism?}
+    \incorrectoption{Italy}
+    \correctoption{France}
+    \incorrectoption{Spain}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{The painter Leonardo da Vinci only had very few paintings that were considered his own... Why is that?}
+    \incorrectoption{He always signed the work as 'anonymous'}
+    \correctoption{He used to get bored and leave the project in the middle}
+    \incorrectoption{He could not create paintings at all}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the process with which the Indian miniature paintings can be seen?}
+    \incorrectoption{Fresco}
+    \correctoption{Tempera}
+    \incorrectoption{Oil}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the Indian folk art that uses geometric patterns and shapes?}
+    \correctoption{Warli}
+    \incorrectoption{Madhubani}
+    \incorrectoption{Kerala Mural}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is common between Andy Warhol and Roy Lichenstein?}
+    \incorrectoption{they used each other as inspiration}
+    \correctoption{they pioneered Pop art}
+    \incorrectoption{they hated each other}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Known for his symbolic use of color and simplified forms, which artist is renowned for his painting "The Kiss," a masterpiece of the Art Nouveau style?}
+    \incorrectoption{Edvard Munch}
+    \correctoption{Gustav Klimt}
+    \incorrectoption{Egon Schiele}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{The Hudson River School, emerging in the 19th century, focused primarily on painting which type of scenery, capturing the grandeur and beauty of the American landscape?}
+    \incorrectoption{Cityscapes}
+    \correctoption{Landscapes}
+    \incorrectoption{Portraits}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Known for their paintings depicting social realism, who were some of the Bengal School artists that depicted daily life?}
+    \incorrectoption{Vincent Van Gogh}
+    \incorrectoption{Chughtai and Abanindranath}
+    \correctoption{Jamini Roy and Zainul Abedin}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Associated with geometric shapes and patterns, is which ancient style of painting?}
+    \correctoption{Egyptian style}
+    \incorrectoption{Roman Style}
+    \incorrectoption{Greek style}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{The art movement Dadaism rejected logic, reason, and aestheticism of modern capitalist society, expressing nonsense and irrationality. Which artist is well known for the movement?}
+    \correctoption{Marcel Duchamp}
+    \incorrectoption{Monet}
+    \incorrectoption{Raphael}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which artist was an impressionist?}
+    \incorrectoption{Leonardo da Vinci}
+    \correctoption{Monet}
+    \incorrectoption{Michelangelo}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{The style that used bold colors to represent the subject was pioneered by which artist?}
+    \incorrectoption{Raphael}
+    \incorrectoption{Da Vinci}
+    \correctoption{Matisse}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{"Saturn Devouring His Son" by Francisco Goya, is associated with which painting style?}
+    \incorrectoption{Gothic}
+    \incorrectoption{Romanticism}
+    \correctoption{Black painting}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{The ancient Byzantine style is associated with which kind of painting?}
+    \correctoption{Mosaics}
+    \incorrectoption{Fresco}
+    \incorrectoption{Miniatures}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{The surrealist artist, René Magritte, is best known for what?}
+    \incorrectoption{Still life}
+    \incorrectoption{portraits}
+    \correctoption{images that challenge the viewers' perceptions of reality}
+\end{enhancedmcq}
+
+\section{Literature}
+
+\begin{enhancedmcq}{Who wrote the epic poem "The Aeneid", and what is its significance in Roman literature?}
+    \correctoption{Virgil}
+    \incorrectoption{Homer}
+    \incorrectoption{Ovid}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Where did the haiku originate as a form of poetry, and what are its key characteristics?}
+    \correctoption{Japan}
+    \incorrectoption{China}
+    \incorrectoption{Korea}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which Italian poet wrote about a journey through Hell in his famous work "The Divine Comedy"?}
+    \correctoption{Dante Alighieri}
+    \incorrectoption{Petrarch}
+    \incorrectoption{Boccaccio}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who is the author of the poem "The Raven", and what is its central theme?}
+    \correctoption{Edgar Allan Poe}
+    \incorrectoption{Robert Frost}
+    \incorrectoption{Emily Dickinson}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a poem that doesn't rhyme, and what are some examples of this form?}
+    \correctoption{Free Verse}
+    \incorrectoption{Sonnet}
+    \incorrectoption{Ballad}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which Irish poet wrote "The Ballad of Reading Gaol", and what inspired this poem?}
+    \correctoption{Oscar Wilde}
+    \incorrectoption{W.B. Yeats}
+    \incorrectoption{James Joyce}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who wrote the famous poem "Ozymandias", and what is its message?}
+    \correctoption{Percy Bysshe Shelley}
+    \incorrectoption{John Keats}
+    \incorrectoption{Lord Byron}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for the first eight lines of a sonnet, and what is its purpose?}
+    \correctoption{Octave}
+    \incorrectoption{Sestet}
+    \incorrectoption{Couplet}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which American poet is known for not using capital letters in his works?}
+    \correctoption{E.E. Cummings}
+    \incorrectoption{Walt Whitman}
+    \incorrectoption{Robert Frost}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a poem where the first letters of each line spell a word?}
+    \correctoption{Acrostic}
+    \incorrectoption{Anagram}
+    \incorrectoption{Palindrome}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who wrote the poem "The Charge of the Light Brigade", and what historical event inspired it?}
+    \correctoption{Alfred Lord Tennyson}
+    \incorrectoption{Robert Browning}
+    \incorrectoption{Elizabeth Barrett Browning}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which poet is famous for his sonnets, and what are some of his most notable works?}
+    \correctoption{William Shakespeare}
+    \incorrectoption{John Donne}
+    \incorrectoption{Edmund Spenser}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a regular pattern of stressed and unstressed syllables in poetry?}
+    \correctoption{Meter}
+    \incorrectoption{Rhyme}
+    \incorrectoption{Alliteration}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who wrote the novel "On the Road", and how does it relate to poetry?}
+    \correctoption{Jack Kerouac}
+    \incorrectoption{Allen Ginsberg}
+    \incorrectoption{William S. Burroughs}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which poet spoke at President Biden's inauguration, and what was the title of their poem?}
+    \correctoption{Amanda Gorman}
+    \incorrectoption{Maya Angelou}
+    \incorrectoption{Langston Hughes}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who is the author of the famous novel "To Kill a Mockingbird", and what are its themes?}
+    \incorrectoption{F. Scott Fitzgerald}
+    \correctoption{Harper Lee}
+    \incorrectoption{Jane Austen}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a literary device that compares two unlike things without using "like" or "as"?}
+    \correctoption{Metaphor}
+    \incorrectoption{Simile}
+    \incorrectoption{Personification}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which poet is known for his collection "Leaves of Grass", and what are its key themes?}
+    \correctoption{Walt Whitman}
+    \incorrectoption{Emily Dickinson}
+    \incorrectoption{Robert Frost}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who wrote the poem "Do Not Go Gentle into That Good Night", and what is its central theme?}
+    \correctoption{Dylan Thomas}
+    \incorrectoption{T.S. Eliot}
+    \incorrectoption{W.H. Auden}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a poem with 14 lines, typically written in iambic pentameter?}
+    \correctoption{Sonnet}
+    \incorrectoption{Ballad}
+    \incorrectoption{Ode}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which author wrote the dystopian novel "1984", and what are its themes?}
+    \correctoption{George Orwell}
+    \incorrectoption{Aldous Huxley}
+    \incorrectoption{Ray Bradbury}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who is the author of the poem "The Love Song of J. Alfred Prufrock", and what are its key themes?}
+    \correctoption{T.S. Eliot}
+    \incorrectoption{Ezra Pound}
+    \incorrectoption{Wallace Stevens}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a literary device that gives human-like qualities to non-human entities?}
+    \correctoption{Personification}
+    \incorrectoption{Symbolism}
+    \incorrectoption{Imagery}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which poet is known for his reclusive life and unique style, and what are some of his notable poems?}
+    \correctoption{Emily Dickinson}
+    \incorrectoption{Sylvia Plath}
+    \incorrectoption{Anne Sexton}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who wrote the famous novel "Pride and Prejudice", and what are its themes?}
+    \correctoption{Jane Austen}
+    \incorrectoption{Charles Dickens}
+    \incorrectoption{J.K. Rowling}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a poem that tells a story, often with a folkloric theme?}
+    \correctoption{Ballad}
+    \incorrectoption{Epic}
+    \incorrectoption{Ode}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which author wrote the novel "The Great Gatsby", and what are its themes?}
+    \correctoption{F. Scott Fitzgerald}
+    \incorrectoption{Ernest Hemingway}
+    \incorrectoption{William Faulkner}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who is the author of the poem "The Waste Land", and what are its key themes?}
+    \correctoption{T.S. Eliot}
+    \incorrectoption{Ezra Pound}
+    \incorrectoption{Wallace Stevens}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a literary device that uses words to imitate sounds?}
+    \correctoption{Onomatopoeia}
+    \incorrectoption{Alliteration}
+    \incorrectoption{Assonance}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which poet is known for his collection "The Canterbury Tales", and what are its themes?}
+    \correctoption{Geoffrey Chaucer}
+    \incorrectoption{William Shakespeare}
+    \incorrectoption{John Milton}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who wrote the novel "The Catcher in the Rye", and what are its themes?}
+    \correctoption{J.D. Salinger}
+    \incorrectoption{F. Scott Fitzgerald}
+    \incorrectoption{Ernest Hemingway}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a poem that expresses praise or admiration?}
+    \correctoption{Ode}
+    \incorrectoption{Elegy}
+    \incorrectoption{Sonnet}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which author wrote the novel "The Lord of the Rings", and what are its themes?}
+    \correctoption{J.R.R. Tolkien}
+    \incorrectoption{C.S. Lewis}
+    \incorrectoption{George R.R. Martin}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who is the author of the poem "The Tyger", and what are its themes?}
+    \correctoption{William Blake}
+    \incorrectoption{John Keats}
+    \incorrectoption{Percy Bysshe Shelley}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a literary device that uses an object to represent an abstract idea?}
+    \correctoption{Symbolism}
+    \incorrectoption{Metaphor}
+    \incorrectoption{Allegory}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which poet is known for his collection "The Prelude", and what are its themes?}
+    \correctoption{William Wordsworth}
+    \incorrectoption{Samuel Taylor Coleridge}
+    \incorrectoption{John Keats}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who wrote the novel "The Picture of Dorian Gray", and what are its themes?}
+    \correctoption{Oscar Wilde}
+    \incorrectoption{Bram Stoker}
+    \incorrectoption{Mary Shelley}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a poem that mourns the death of someone?}
+    \correctoption{Elegy}
+    \incorrectoption{Ode}
+    \incorrectoption{Sonnet}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which author wrote the novel "The Adventures of Huckleberry Finn", and what are its themes?}
+    \correctoption{Mark Twain}
+    \incorrectoption{F. Scott Fitzgerald}
+    \incorrectoption{Ernest Hemingway}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who is the author of the poem "The Lady of Shalott", and what are its themes?}
+    \correctoption{Alfred Lord Tennyson}
+    \incorrectoption{Robert Browning}
+    \incorrectoption{Elizabeth Barrett Browning}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a literary device that repeats initial consonant sounds?}
+    \correctoption{Alliteration}
+    \incorrectoption{Assonance}
+    \incorrectoption{Consonance}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who wrote the novel "The Scarlet Letter", and what are its themes?}
+    \correctoption{Nathaniel Hawthorne}
+    \incorrectoption{Herman Melville}
+    \incorrectoption{Edgar Allan Poe}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a poem that expresses sorrow or regret?}
+    \correctoption{Elegy}
+    \incorrectoption{Ode}
+    \incorrectoption{Lament}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which author wrote the novel "The Count of Monte Cristo", and what are its themes?}
+    \correctoption{Alexandre Dumas}
+    \incorrectoption{Victor Hugo}
+    \incorrectoption{Gustave Flaubert}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who is the author of the poem "The Highwayman", and what are its themes?}
+    \correctoption{Alfred Noyes}
+    \incorrectoption{Robert Browning}
+    \incorrectoption{Elizabeth Barrett Browning}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a literary device that uses irony or understatement?}
+    \correctoption{Irony}
+    \incorrectoption{Sarcasm}
+    \incorrectoption{Litotes}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which poet is known for his collection "The Song of Hiawatha", and what are its themes?}
+    \correctoption{Henry Wadsworth Longfellow}
+    \incorrectoption{Walt Whitman}
+    \incorrectoption{Emily Dickinson}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who wrote the novel "The War of the Worlds", and what are its themes?}
+    \correctoption{H.G. Wells}
+    \incorrectoption{Jules Verne}
+    \incorrectoption{Isaac Asimov}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the term for a poem that tells a story in verse, often with a folkloric theme?}
+    \correctoption{Ballad}
+    \incorrectoption{Epic}
+    \incorrectoption{Narrative Poem}
+\end{enhancedmcq}
+
+\section{Films and Media}
+
+\begin{enhancedmcq}{In the film "Inception," what is the name of the device used to enter and manipulate dreams, and how does it work?}
+    \incorrectoption{PASIV}
+    \incorrectoption{PASON}
+    \correctoption{PASOF}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which actor played the role of the Joker in the 2008 film "The Dark Knight," and what made his performance notable?}
+    \correctoption{Heath Ledger}
+    \incorrectoption{Jack Nicholson}
+    \incorrectoption{Jared Leto}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the famous sitcom that aired from 1994 to 2004 and starred Jennifer Aniston, Courteney Cox, and Lisa Kudrow?}
+    \correctoption{Friends}
+    \incorrectoption{Seinfeld}
+    \incorrectoption{How I Met Your Mother}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who directed the film "The Lord of the Rings" trilogy, and what were some of the challenges faced during its production?}
+    \correctoption{Peter Jackson}
+    \incorrectoption{Steven Spielberg}
+    \incorrectoption{James Cameron}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{In the TV series "Breaking Bad," what is the name of the main character played by Bryan Cranston, and what is his transformation throughout the series?}
+    \correctoption{Walter White}
+    \incorrectoption{Jesse Pinkman}
+    \incorrectoption{Hank Schrader}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which actress played the role of Katniss Everdeen in "The Hunger Games" series, and what were her notable performances?}
+    \correctoption{Jennifer Lawrence}
+    \incorrectoption{Shailene Woodley}
+    \incorrectoption{Mila Kunis}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the popular web series that follows the lives of a group of friends living in New York City, and what are its key themes?}
+    \incorrectoption{Friends}
+    \incorrectoption{How I Met Your Mother}
+    \correctoption{Broad City}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who played the role of Tony Soprano in the TV series "The Sopranos," and what made his character iconic?}
+    \correctoption{James Gandolfini}
+    \incorrectoption{Lorraine Bracco}
+    \incorrectoption{Edie Falco}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{In the film "The Matrix," what is the name of the character played by Keanu Reeves, and what is his role in the story?}
+    \correctoption{Neo}
+    \incorrectoption{Morpheus}
+    \incorrectoption{Agent Smith}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which actor played the role of Captain Jack Sparrow in the "Pirates of the Caribbean" series, and what made his performance memorable?}
+    \correctoption{Johnny Depp}
+    \incorrectoption{Orlando Bloom}
+    \incorrectoption{Keira Knightley}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who directed the film "Titanic," and what was its historical inspiration?}
+    \correctoption{James Cameron}
+    \incorrectoption{Steven Spielberg}
+    \incorrectoption{Martin Scorsese}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which TV series is set in the fictional town of Stars Hollow, Connecticut, and what are its key themes?}
+    \correctoption{Gilmore Girls}
+    \incorrectoption{The O.C.}
+    \incorrectoption{Gossip Girl}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the famous sitcom that aired from 1989 to 1998 and starred Tim Allen, and what were its key themes?}
+    \correctoption{Home Improvement}
+    \incorrectoption{The Fresh Prince of Bel-Air}
+    \incorrectoption{Roseanne}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{In the film "The Silence of the Lambs," what is the name of the character played by Jodie Foster, and what is her role in the story?}
+    \correctoption{Clarice Starling}
+    \incorrectoption{Hannibal Lecter}
+    \incorrectoption{Buffalo Bill}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{In the film "Inception," what is the concept of shared dreaming, and how does it impact the characters?}
+    \correctoption{Shared dreaming allows multiple people to enter the same dream.}
+    \incorrectoption{Shared dreaming is a form of telepathy.}
+    \incorrectoption{Shared dreaming is a metaphor for reality.}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which actor played the role of the villainous character in the film "The Dark Knight Rises," and what was his motivation?}
+    \correctoption{Tom Hardy as Bane}
+    \incorrectoption{Heath Ledger as the Joker}
+    \incorrectoption{Liam Neeson as Ra's al Ghul}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the famous sitcom that aired from 1990 to 1996 and starred Will Smith?}
+    \correctoption{The Fresh Prince of Bel-Air}
+    \incorrectoption{Friends}
+    \incorrectoption{Seinfeld}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who directed the film "The Avengers," and what was its impact on the Marvel Cinematic Universe?}
+    \correctoption{Joss Whedon}
+    \incorrectoption{James Cameron}
+    \incorrectoption{Steven Spielberg}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{In the TV series "Game of Thrones," what is the name of the fictional continent where most of the story takes place?}
+    \correctoption{Westeros}
+    \incorrectoption{Essos}
+    \incorrectoption{Sothoryos}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which actress played the role of Cersei Lannister in "Game of Thrones," and what were her notable performances?}
+    \correctoption{Lena Headey}
+    \incorrectoption{Emilia Clarke}
+    \incorrectoption{Maisie Williams}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{In the film "The Matrix," what is the name of the character played by Laurence Fishburne, and what is his role in the story?}
+    \correctoption{Morpheus}
+    \incorrectoption{Neo}
+    \incorrectoption{Agent Smith}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which actor played the role of Luke Skywalker in the original "Star Wars" trilogy, and what were his notable performances?}
+    \correctoption{Mark Hamill}
+    \incorrectoption{Harrison Ford}
+    \incorrectoption{Carrie Fisher}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{In which fictional African country is Black Panther from?}
+    \correctoption{Wakanda}
+    \incorrectoption{Azania}
+    \incorrectoption{Kongo}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who sings the song "Say So" that became a popular TikTok dance?}
+    \correctoption{Doja Cat}
+    \incorrectoption{Ariana Grande}
+    \incorrectoption{Justin Bieber}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who created the viral "Renegade" dance on TikTok?}
+    \incorrectoption{Addison Rae}
+    \correctoption{Jalaiah Harmon}
+    \incorrectoption{Charli D'Amelio}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What was the name of Meghan Markle's lifestyle blog before she married into the royal family?}
+    \correctoption{The Tig}
+    \incorrectoption{The Royal Life}
+    \incorrectoption{The Duchess Diaries}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which hard seltzer did America face a shortage of in 2019?}
+    \incorrectoption{Truly}
+    \correctoption{White Claw}
+    \incorrectoption{Bon \& Viv}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is Mr. Big's real name in "Sex and the City"?}
+    \correctoption{John James Preston}
+    \incorrectoption{Mike Brady}
+    \incorrectoption{Jack Harris}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{In the series "Arrested Development," where is there always money?}
+    \incorrectoption{In the bank}
+    \correctoption{In the banana stand}
+    \incorrectoption{In the attic}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What was the name of Winston's beloved cat in the TV show "New Girl"?}
+    \incorrectoption{Mr. Whiskers}
+    \correctoption{Furguson}
+    \incorrectoption{Snowball}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Taylor Swift made her acting debut in which movie?}
+    \correctoption{Valentine's Day}
+    \incorrectoption{The Hunger Games}
+    \incorrectoption{The Notebook}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who voices Meg Griffin on the animated show "Family Guy"?}
+    \correctoption{Mila Kunis}
+    \incorrectoption{Kristen Bell}
+    \incorrectoption{Emma Stone}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which celebrity chef is known for the catchphrase "bam"?}
+    \incorrectoption{Gordon Ramsay}
+    \correctoption{Emeril Lagasse}
+    \incorrectoption{Bobby Flay}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which rapper is known for his friendship with Martha Stewart?}
+    \correctoption{Snoop Dogg}
+    \incorrectoption{Jay-Z}
+    \incorrectoption{Kanye West}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Taylor Swift wrote "Bad Blood" as a diss track against which other pop star?}
+    \correctoption{Katy Perry}
+    \incorrectoption{Lady Gaga}
+    \incorrectoption{Miley Cyrus}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who masterminded the movie '3 Idiots'?}
+    \incorrectoption{Karan Johar}
+    \correctoption{Rajkumar Hirani}
+    \incorrectoption{Sanjay Leela Bhansali}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which actress played the fierce female lead in the Bollywood movie 'Fashion'?}
+    \incorrectoption{Deepika Padukone}
+    \correctoption{Priyanka Chopra}
+    \incorrectoption{Katrina Kaif}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is Hrithik Roshan's real surname?}
+    \correctoption{Nagrath}
+    \incorrectoption{Roshan}
+    \incorrectoption{Khan}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which Bollywood actress married American pop star Nick Jonas?}
+    \incorrectoption{Alia Bhatt}
+    \correctoption{Priyanka Chopra}
+    \incorrectoption{Sonam Kapoor}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who directed the Bollywood film "Gully Boy" about street rap?}
+    \correctoption{Zoya Akhtar}
+    \incorrectoption{Karan Johar}
+    \incorrectoption{Anurag Kashyap}
+\end{enhancedmcq}
+
+\section{Folk Dances and Festivals of India}
+
+\begin{enhancedmcq}{What is the name of the energetic folk dance from Punjab, traditionally performed during the harvest season?}
+    \correctoption{Bhangra}
+    \incorrectoption{Giddha}
+    \incorrectoption{Dandiya Raas}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which folk dance from Karnataka combines dance, music, and storytelling, often enacting stories from the Mahabharata?}
+    \correctoption{Yakshagana}
+    \incorrectoption{Dollu Kunitha}
+    \incorrectoption{Karagattam}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who is a renowned artist known for preserving and evolving the Kuchipudi dance form?}
+    \correctoption{Vempati Chinna Satyam}
+    \incorrectoption{Rukmini Devi Arundale}
+    \incorrectoption{Balasaraswati}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the traditional folk dance from Tamil Nadu that involves balancing a pot on the head?}
+    \correctoption{Karagattam}
+    \incorrectoption{Oyilattam}
+    \incorrectoption{Kolattam}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which folk dance from Maharashtra is known for its powerful rhythm and eroticism, often performed to the dholki drum?}
+    \correctoption{Lavani}
+    \incorrectoption{Koli}
+    \incorrectoption{Lezim}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the folk dance from Gujarat performed during the Navratri festival, involving circular formations?}
+    \correctoption{Garba}
+    \incorrectoption{Dandiya Raas}
+    \incorrectoption{Tippani}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which artist is credited with popularizing the Bharatanatyam dance form?}
+    \correctoption{Rukmini Devi Arundale}
+    \incorrectoption{Balasaraswati}
+    \incorrectoption{Vempati Chinna Satyam}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the folk dance from Telangana characterized by vigorous and acrobatic movements?}
+    \correctoption{Perini Shivatandavam}
+    \incorrectoption{Kuchipudi}
+    \incorrectoption{Yakshagana}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which folk dance from Assam is performed during the Bihu festival?}
+    \correctoption{Bihu}
+    \incorrectoption{Bagurumba}
+    \incorrectoption{Jhumair}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the traditional folk dance from Rajasthan known for its graceful movements?}
+    \correctoption{Ghoomar}
+    \incorrectoption{Kalbelia}
+    \incorrectoption{Rasiya}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who is a notable dancer known for her contributions to the Odissi dance form?}
+    \correctoption{Sonal Mansingh}
+    \incorrectoption{Rukmini Devi Arundale}
+    \incorrectoption{Balasaraswati}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the folk dance from Chhattisgarh that denotes the change of seasons?}
+    \correctoption{Karma}
+    \incorrectoption{Raut Nacha}
+    \incorrectoption{Gaur Maaria}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which artist is credited with preserving the Mohiniattam dance form?}
+    \correctoption{Kalamandalam Kalyanikutty Amma}
+    \incorrectoption{Rukmini Devi Arundale}
+    \incorrectoption{Vempati Chinna Satyam}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the folk dance from Goa performed by women in a circular pattern?}
+    \correctoption{Fugdi}
+    \incorrectoption{Dulpod}
+    \incorrectoption{Kunnbi-Geet}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which folk dance from Jharkhand is known for its energetic movements?}
+    \correctoption{Jhumair}
+    \incorrectoption{Domkach}
+    \incorrectoption{Chhau}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who is a renowned Kathakali dancer known for his performances?}
+    \correctoption{Kalamandalam Gopi}
+    \incorrectoption{Rukmini Devi Arundale}
+    \incorrectoption{Vempati Chinna Satyam}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the folk dance from Odisha that involves intricate footwork?}
+    \correctoption{Odissi}
+    \incorrectoption{Gotipua}
+    \incorrectoption{Chhau}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which festival in India is celebrated with the traditional dance of Garba?}
+    \correctoption{Navratri}
+    \incorrectoption{Diwali}
+    \incorrectoption{Holi}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the folk dance from Manipur known for its elegant movements?}
+    \correctoption{Manipuri}
+    \incorrectoption{Kathak}
+    \incorrectoption{Bharatanatyam}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which artist is credited with popularizing the Kathak dance form?}
+    \correctoption{Birju Maharaj}
+    \incorrectoption{Rukmini Devi Arundale}
+    \incorrectoption{Vempati Chinna Satyam}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who is a notable dancer known for her contributions to the Bharatanatyam dance form?}
+    \correctoption{Rukmini Devi Arundale}
+    \incorrectoption{Balasaraswati}
+    \incorrectoption{Yamini Krishnamurthy}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the folk dance from Andhra Pradesh that involves storytelling through dance?}
+    \correctoption{Kuchipudi}
+    \incorrectoption{Yakshagana}
+    \incorrectoption{Veethi Bhagavatham}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which folk dance from West Bengal is known for its energetic movements?}
+    \incorrectoption{Baul}
+    \correctoption{Jhumur}
+    \incorrectoption{Gambhira}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the traditional folk dance from Madhya Pradesh performed during festivals?}
+    \correctoption{Matki}
+    \incorrectoption{Bhavai}
+    \incorrectoption{Maanch}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which artist is credited with preserving the Kathakali dance form?}
+    \correctoption{Kalamandalam Gopi}
+    \incorrectoption{Rukmini Devi Arundale}
+    \incorrectoption{Vempati Chinna Satyam}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who is a renowned dancer known for her contributions to the Mohiniattam dance form?}
+    \correctoption{Kalamandalam Kalyanikutty Amma}
+    \incorrectoption{Rukmini Devi Arundale}
+    \incorrectoption{Balasaraswati}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the folk dance from Haryana that involves energetic movements?}
+    \correctoption{Jhumar}
+    \incorrectoption{Phag}
+    \incorrectoption{Daph}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which festival in India is celebrated with the traditional dance of Bihu?}
+    \correctoption{Bihu Festival}
+    \incorrectoption{Navratri}
+    \incorrectoption{Diwali}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the folk dance from Sikkim known for its graceful movements?}
+    \correctoption{Singhi Chaam}
+    \incorrectoption{Denzong Ney}
+    \incorrectoption{Rechung Pho}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which artist is credited with popularizing the Odissi dance form?}
+    \correctoption{Sonal Mansingh}
+    \incorrectoption{Rukmini Devi Arundale}
+    \incorrectoption{Vempati Chinna Satyam}
+\end{enhancedmcq}
+
+\section{Pop Culture}
+
+\begin{enhancedmcq}{Which Marvel superhero is known for wielding a magical hammer called Mjolnir?}
+    \incorrectoption{Iron Man}
+    \incorrectoption{Captain America}
+    \correctoption{Thor}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who was the first winner of "The Masked Singer"?}
+    \correctoption{T-Pain}
+    \incorrectoption{Nick Cannon}
+    \incorrectoption{Kelly Clarkson}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who wrote the "Twilight" book series?}
+    \incorrectoption{J.K. Rowling}
+    \correctoption{Stephenie Meyer}
+    \incorrectoption{Suzanne Collins}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is the name of the alternate dimension in Netflix's "Stranger Things"?}
+    \incorrectoption{The Shadow World}
+    \correctoption{The Upside Down}
+    \incorrectoption{The Dark Side}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which artist made history in 2020 as the youngest winner of the Grammys' four main categories?}
+    \incorrectoption{Taylor Swift}
+    \correctoption{Billie Eilish}
+    \incorrectoption{Katy Perry}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{In which year did "Keeping Up with the Kardashians" first premiere?}
+    \incorrectoption{2006}
+    \correctoption{2007}
+    \incorrectoption{2008}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who was the first African American man to achieve EGOT status?}
+    \incorrectoption{Denzel Washington}
+    \correctoption{John Legend}
+    \incorrectoption{Will Smith}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{In which fictional African country is Black Panther from?}
+    \correctoption{Wakanda}
+    \incorrectoption{Azania}
+    \incorrectoption{Kongo}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who sings the song "Say So" that became a popular TikTok dance?}
+    \correctoption{Doja Cat}
+    \incorrectoption{Ariana Grande}
+    \incorrectoption{Justin Bieber}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who created the viral "Renegade" dance on TikTok?}
+    \incorrectoption{Addison Rae}
+    \correctoption{Jalaiah Harmon}
+    \incorrectoption{Charli D'Amelio}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What was the name of Meghan Markle's lifestyle blog before she married into the royal family?}
+    \correctoption{The Tig}
+    \incorrectoption{The Royal Life}
+    \incorrectoption{The Duchess Diaries}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which hard seltzer did America face a shortage of in 2019?}
+    \incorrectoption{Truly}
+    \correctoption{White Claw}
+    \incorrectoption{Bon \& Viv}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What is Mr. Big's real name in "Sex and the City"?}
+    \correctoption{John James Preston}
+    \incorrectoption{Mike Brady}
+    \incorrectoption{Jack Harris}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{In the series "Arrested Development," where is there always money?}
+    \incorrectoption{In the bank}
+    \correctoption{In the banana stand}
+    \incorrectoption{In the attic}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{What was the name of Winston's beloved cat in the TV show "New Girl"?}
+    \incorrectoption{Mr. Whiskers}
+    \correctoption{Furguson}
+    \incorrectoption{Snowball}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Taylor Swift made her acting debut in which movie?}
+    \correctoption{Valentine's Day}
+    \incorrectoption{The Hunger Games}
+    \incorrectoption{The Notebook}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Who voices Meg Griffin on the animated show "Family Guy"?}
+    \correctoption{Mila Kunis}
+    \incorrectoption{Kristen Bell}
+    \incorrectoption{Emma Stone}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which celebrity chef is known for the catchphrase "bam"?}
+    \incorrectoption{Gordon Ramsay}
+    \correctoption{Emeril Lagasse}
+    \incorrectoption{Bobby Flay}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Which rapper is known for his friendship with Martha Stewart?}
+    \correctoption{Snoop Dogg}
+    \incorrectoption{Jay-Z}
+    \incorrectoption{Kanye West}
+\end{enhancedmcq}
+
+\begin{enhancedmcq}{Taylor Swift wrote "Bad Blood" as a diss track against which other pop star?}
+    \correctoption{Katy Perry}
+    \incorrectoption{Lady Gaga}
+    \incorrectoption{Miley Cyrus}
+\end{enhancedmcq}
+
+% Answer key section
+\sectioncover{ANSWER KEY}{Check your knowledge}{Review your answers and track your progress through each section of The Ultimate Quest.}
+
+\chapter{Answer Key}
+
+\section{Science}
+\subsection{Physics}
+\begin{itemize}
+\item Fundamental forces: \textbf{c} (Gravitational force)
+\item SI Units: \textbf{b} (Ampere)
+\item Famous Scientists: \textbf{c} (Albert Einstein)
+\item Light: \textbf{c} (300,000 km/s)
+\item Electromagnetism: \textbf{b} (Michael Faraday)
+\end{itemize}
+
+\subsection{Chemistry}
+\begin{itemize}
+\item Chemical Elements: \textbf{c} (Au)
+\item Periodic Table: \textbf{c} (Helium)
+\item Acid-Base Chemistry: \textbf{b} (7)
+\item Chemical Bonds: \textbf{b} (Covalent bond)
+\item Organic Chemistry: \textbf{b} (C$_n$H$_{2n+2}$)
+\end{itemize}
+
+\section{Technology}
+\subsection{Computer Science}
+\begin{itemize}
+\item Programming Languages: \textbf{c} (Python)
+\item Computer Hardware: \textbf{a} (Central Processing Unit)
+\item Computing History: \textbf{c} (Alan Turing)
+\item Networking: \textbf{b} (Hypertext Transfer Protocol)
+\item Operating Systems: \textbf{d} (Oracle)
+\end{itemize}
+
+\section{Engineering}
+\subsection{Mechanical Engineering}
+\begin{itemize}
+\item Fluid Mechanics: \textbf{b} (Bernoulli's Principle)
+\item Simple Machines: \textbf{d} (Battery)
+\item Thermodynamics: \textbf{a} (First law)
+\item Materials Science: \textbf{c} (Strength)
+\item Engineering Design: \textbf{d} (Marketing)
+\end{itemize}
+
+\section{Arts}
+\subsection{Visual Arts/Paintings}
+\begin{itemize}
+\item Art Movements: \textbf{b} (Surrealism)
+\item Famous Artists: \textbf{c} (Pablo Picasso)
+\item Painting Techniques: \textbf{a} (Pointillism)
+\item Renaissance Art: \textbf{b} (Oil paint)
+\item Mughal Art: \textbf{c} (Mansur)
+\item Impressionism: \textbf{b} (Impressionism)
+\item Post-Impressionism: \textbf{b} (Vincent van Gogh)
+\item Italian Renaissance: \textbf{c} (Sandro Botticelli)
+\item Indian Art: \textbf{a} (Ramayana and Mahabharata)
+\item Cubism: \textbf{b} (Cubism)
+\item Renaissance Techniques: \textbf{b} (Blurring of outlines)
+\item Fauvism: \textbf{b} (Fauvism)
+\item Dutch Masters: \textbf{b} (Rembrandt van Rijn)
+\item Bengal School: \textbf{b} (Abanindranath Tagore)
+\item Futurism: \textbf{b} (Futurism)
+\item Art Nouveau: \textbf{b} (Gustav Klimt)
+\item American Landscapes: \textbf{b} (Landscapes)
+\item Social Realism: \textbf{c} (Jamini Roy and Zainul Abedin)
+\item Ancient Art: \textbf{a} (Egyptian style)
+\item Dadaism: \textbf{a} (Marcel Duchamp)
+\item Impressionists: \textbf{b} (Monet)
+\item Fauvism: \textbf{a} (Henri Matisse)
+\item Spanish Artists: \textbf{c} (Matisse)
+\item Byzantine Art: \textbf{a} (Mosaics)
+\item Surrealist Art: \textbf{c} (images that challenge the viewers' perceptions of reality)
+\end{itemize}
+
+\subsection{Literature}
+\begin{itemize}
+\item Epic Poetry: \textbf{a} (Virgil)
+\item Poetry Forms: \textbf{a} (Japan)
+\item Medieval Literature: \textbf{a} (Dante Alighieri)
+\item American Poetry: \textbf{a} (Edgar Allan Poe)
+\item Poetry Structure: \textbf{a} (Free Verse)
+\item Irish Literature: \textbf{a} (Oscar Wilde)
+\item Romantic Poetry: \textbf{a} (Percy Bysshe Shelley)
+\item Sonnet Structure: \textbf{a} (Octave)
+\item Modern Poetry: \textbf{a} (E.E. Cummings)
+\item Poetic Devices: \textbf{a} (Acrostic)
+\item War Poetry: \textbf{a} (Alfred Lord Tennyson)
+\item Sonnets: \textbf{a} (William Shakespeare)
+\item Poetic Meter: \textbf{a} (Meter)
+\item Beat Poetry: \textbf{a} (Jack Kerouac)
+\item Contemporary Poetry: \textbf{a} (Amanda Gorman)
+\item American Literature: \textbf{b} (Harper Lee)
+\item Literary Devices: \textbf{a} (Metaphor)
+\item American Poetry: \textbf{a} (Walt Whitman)
+\item Welsh Poetry: \textbf{a} (Dylan Thomas)
+\item Poetic Forms: \textbf{a} (Sonnet)
+\item Dystopian Literature: \textbf{a} (George Orwell)
+\item Modernist Poetry: \textbf{a} (T.S. Eliot)
+\item Literary Devices: \textbf{a} (Personification)
+\item American Women Poets: \textbf{a} (Emily Dickinson)
+\item British Literature: \textbf{a} (Jane Austen)
+\item Poetry Types: \textbf{a} (Ballad)
+\item American Novels: \textbf{a} (F. Scott Fitzgerald)
+\item Modernist Poetry: \textbf{a} (T.S. Eliot)
+\item Sound Devices: \textbf{a} (Onomatopoeia)
+\item Medieval English Literature: \textbf{a} (Geoffrey Chaucer)
+\end{itemize}
+
+\subsection{Films and Media}
+\begin{itemize}
+\item Dream Technology: \textbf{c} (PASOF)
+\item Iconic Characters: \textbf{a} (Heath Ledger)
+\item Television Series: \textbf{a} (Friends)
+\item Film Direction: \textbf{a} (Peter Jackson)
+\item Character Development: \textbf{a} (Walter White)
+\item Film Franchises: \textbf{a} (Jennifer Lawrence)
+\item Web Series: \textbf{c} (Broad City)
+\item TV Drama: \textbf{a} (James Gandolfini)
+\item Sci-Fi Films: \textbf{a} (Neo)
+\item Character Acting: \textbf{a} (Johnny Depp)
+\item Film Directors: \textbf{a} (James Cameron)
+\item TV Settings: \textbf{a} (Gilmore Girls)
+\item Sitcoms: \textbf{a} (Home Improvement)
+\item Thriller Films: \textbf{a} (Clarice Starling)
+\item Dream Concepts: \textbf{a} (Shared dreaming allows multiple people to enter the same dream)
+\item Villain Characters: \textbf{a} (Tom Hardy as Bane)
+\item Classic Sitcoms: \textbf{a} (The Fresh Prince of Bel-Air)
+\item Superhero Films: \textbf{a} (Joss Whedon)
+\item Fantasy Series: \textbf{a} (Westeros)
+\end{itemize}
+
+\subsection{Folk Dances and Festivals of India}
+\begin{itemize}
+\item Punjabi Dance: \textbf{a} (Bhangra)
+\item Karnataka Folk Arts: \textbf{a} (Yakshagana)
+\item Dance Artists: \textbf{a} (Vempati Chinna Satyam)
+\item Tamil Folk Dance: \textbf{a} (Karagattam)
+\item Maharashtra Folk Arts: \textbf{a} (Lavani)
+\item Gujarati Dance: \textbf{a} (Garba)
+\item Bharatanatyam: \textbf{a} (Rukmini Devi Arundale)
+\item Telangana Dance: \textbf{a} (Perini Shivatandavam)
+\item Assamese Dance: \textbf{a} (Bihu)
+\item Rajasthani Dance: \textbf{a} (Ghoomar)
+\item Odissi Dance: \textbf{a} (Sonal Mansingh)
+\item Chhattisgarh Folk: \textbf{a} (Karma)
+\item Mohiniattam: \textbf{a} (Kalamandalam Kalyanikutty Amma)
+\item Goan Dance: \textbf{a} (Fugdi)
+\item Jharkhand Folk: \textbf{a} (Jhumair)
+\item Kathakali: \textbf{a} (Kalamandalam Gopi)
+\item Odisha Dance: \textbf{a} (Odissi)
+\item Festival Dances: \textbf{a} (Navratri)
+\item Manipuri Dance: \textbf{a} (Manipuri)
+\item Kathak Dance: \textbf{a} (Birju Maharaj)
+\end{itemize}
+
+\subsection{Pop Culture}
+\begin{itemize}
+\item Superheroes: \textbf{c} (Thor)
+\item Reality TV: \textbf{a} (T-Pain)
+\item Books: \textbf{b} (Stephenie Meyer)
+\item TV Series: \textbf{b} (The Upside Down)
+\item Music Awards: \textbf{b} (Billie Eilish)
+\item Reality TV Shows: \textbf{b} (2007)
+\item Entertainment Awards: \textbf{b} (John Legend)
+\item Marvel Universe: \textbf{a} (Wakanda)
+\item Social Media: \textbf{a} (Doja Cat)
+\item TikTok Trends: \textbf{b} (Jalaiah Harmon)
+\item Royal Family: \textbf{a} (The Tig)
+\item Food Trends: \textbf{b} (White Claw)
+\item TV Characters: \textbf{a} (John James Preston)
+\item Comedy Series: \textbf{b} (In the banana stand)
+\item TV Pets: \textbf{b} (Furguson)
+\item Acting Debuts: \textbf{a} (Valentine's Day)
+\item Voice Acting: \textbf{a} (Mila Kunis)
+\item Celebrity Chefs: \textbf{b} (Emeril Lagasse)
+\item Celebrity Friendships: \textbf{a} (Snoop Dogg)
+\item Music Feuds: \textbf{a} (Katy Perry)
+\end{itemize}
+
+\end{document} 

@@ -1,54 +1,53 @@
-# The Ultimate Quest - Quiz Book
+# Arts Chapter Extraction Script
 
-A LaTeX template for "The Ultimate Quest" quiz book covering Science, Technology, Engineering, Arts & Mathematics (STEAM).
+This repository contains a script for extracting Arts & Culture questions from the original question bank and formatting them as a LaTeX book.
 
-## Project Structure
+## Files
 
-- `main.tex` - Main document
-- `titlepage.tex` - Title page design
-- `mcq_style.tex` - MCQ styling and formatting
-- `section_cover.tex` - Section cover page template
+- `update_arts_chapter.py` - The main Python script that extracts questions from arts_chapter.md and updates main.tex
+- `main.tex` - The LaTeX file containing the formatted book with only Arts & Culture questions
+- `Question/arts_chapter.md` - The source file containing all Arts & Culture questions
 
-## How to Compile
+## How to Use
 
-1. Ensure you have a LaTeX distribution installed (e.g., TeX Live, MiKTeX).
-2. Compile the document using pdfLaTeX:
+1. Make sure you have the source files: `arts_chapter.md` in the `Question` directory and `main.tex` in the root directory.
+2. Run the script:
+   ```
+   python update_arts_chapter.py
+   ```
+3. The script will:
+   - Extract all sections from arts_chapter.md
+   - Format each question with its options
+   - Mark correct and incorrect answers
+   - Generate an answer key
+   - Update main.tex with only Arts & Culture content
 
-```bash
-pdflatex main.tex
-pdflatex main.tex  # Run twice for proper TOC generation
-```
+4. After running the script, you can compile the LaTeX file to generate a PDF:
+   ```
+   pdflatex main.tex
+   ```
 
-Or use a LaTeX editor like TeXstudio, Overleaf, or VS Code with LaTeX Workshop extension.
+## Sections Included
 
-## Features
+The following sections are extracted from the arts_chapter.md file:
 
-- Professional book design with styled chapter and section headings
-- Enhanced MCQ format with boxed questions
-- Section cover pages
-- Answer key
-- Consistent styling throughout the document
-- Headers and footers with book title and page numbers
+1. VISUAL ARTS and PAINTINGS
+2. LITERATURE
+3. FILMS AND MEDIA
+4. FOLK DANCES AND FESTIVALS OF INDIA
+5. POP CULTURE
+6. ARTS MIXED BAG 1
+7. ARTS MIXED BAG 2
+8. ARTS MIXED BAG 3
 
-## Customization
+## Requirements
 
-- Modify color scheme by changing RGB values for `questblue` and `questorange`
-- Add custom graphics/logos by uncommenting image code in section covers
-- Adjust spacing and formatting in the style files
+- Python 3.x
+- A LaTeX distribution (e.g., TeX Live, MiKTeX) with necessary packages
+- Required LaTeX style files: mcq_style.tex, section_cover.tex, titlepage.tex
 
-## Required LaTeX Packages
+## Notes
 
-- graphicx
-- xcolor
-- geometry
-- fancyhdr
-- titlesec
-- enumitem
-- amsmath, amssymb
-- multicol
-- etoolbox
-- tcolorbox
-
-## Author
-
-Gaurava Yadav 
+- The script automatically numbers questions sequentially across all sections
+- Answer keys are generated based on the original answers in arts_chapter.md
+- The LaTeX document is designed for optimal printing and readability 
