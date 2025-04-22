@@ -20,47 +20,39 @@ CHAPTER_ORDER = [
     ("Mathematics", "MATHEMATICS"),
 ]
 
-# Simple markdown to LaTeX replacements (minimal)  
-MD_REPLACEMENTS = [
-    (r"^\*\*([^*]+)\*\*$", r"\\section{\1}"),  # Bold heading -> section
-    (r"\*\*(ANSWER KEY:[^*]+)\*\*", r"\\section{\1}"),
-    (r"^\d+\. ", r"\\question{"),  # start of question line
-]
+# No global regex replacements now; conversion handled in md_to_latex
 
 
 def md_to_latex(md_text: str) -> str:
     """Very naive markdown to LaTeX converter for our limited quiz format."""
     lines = md_text.splitlines()
     out = []
-    q_open = False
+    in_mcq = False
     for line in lines:
-        # Replace bold headers
-        m = re.match(r"\*\*([^*]+)\*\*", line)
-        if m:
-            # Close any open environment
-            if q_open:
-                out.append("}\\par")
-                q_open = False
-            out.append(f"\\section{{{m.group(1).strip()}}}")
+        # Skip bold header lines (handled by outer \section in main.tex)
+        if re.match(r"\*\*[^*]+\*\*", line):
+            # Ignore to avoid duplicate section names
             continue
         # Question lines start with number.
         qm = re.match(r"(\d+)\. (.+)", line)
         if qm:
-            if q_open:
-                out.append("}\\par")
+            # Close previous MCQ block
+            if in_mcq:
+                out.append("\\end{enhancedmcq}")
+                in_mcq = False
             q_text = qm.group(2).strip()
-            out.append(f"\\textbf{{Q{qm.group(1)}}} {q_text}\\par")
-            q_open = False  # we treat as plain paragraph
+            out.append(f"\\begin{{enhancedmcq}}{{{q_text}}}")
+            in_mcq = True
             continue
         # Option lines 'a) text'
-        opt = re.match(r"\s*[a-z]\) (.+)", line)
+        opt = re.match(r"\s*([A-Za-z])\) (.+)", line)
         if opt:
-            out.append(f"\\quad - {opt.group(0).strip()}\\par")
+            out.append(f"\\item {opt.group(2).strip()}")
             continue
         # otherwise plain
         out.append(line)
-    if q_open:
-        out.append("}\\par")
+    if in_mcq:
+        out.append("\\end{enhancedmcq}")
     return "\n".join(out)
 
 
@@ -68,7 +60,11 @@ def convert_md_file(md_path: Path) -> Path:
     tex_path = SECTIONS_DIR / (md_path.stem + ".tex")
     with md_path.open(encoding="utf-8") as f:
         md_content = f.read()
-    latex_content = md_to_latex(md_content)
+
+    if md_path.stem.endswith("_answers") or "ANSWER KEY" in md_content[:100].upper():
+        latex_content = answers_md_to_latex(md_content)
+    else:
+        latex_content = md_to_latex(md_content)
     tex_path.write_text(latex_content, encoding="utf-8")
     return tex_path
 
@@ -97,6 +93,8 @@ def build_sections():
         for quiz_md, ans_md in quizzes:
             # convert quiz and answer key
             quiz_tex = convert_md_file(quiz_md)
+            # Reset question numbering for this quiz
+            tex_entries.append("\\setcounter{totalcounter}{1}")
             tex_entries.append(f"\\section{{{quiz_md.stem.replace('_', ' ').title()}}}")
             tex_entries.append(f"\\input{{{quiz_tex.relative_to(ROOT)}}}")
             if ans_md:
@@ -117,6 +115,25 @@ def rebuild_main_tex():
     new_content = f"{pre}\\mainmatter\n\n{new_body}\n\n\\end{{document}}\n"
     MAIN_TEX.write_text(new_content, encoding="utf-8")
     print("main.tex rebuilt successfully.")
+
+
+# ---------------- Answer key conversion -----------------
+
+
+def answers_md_to_latex(md_text: str) -> str:
+    lines = md_text.splitlines()
+    out = ["\\answerkey"]
+    for line in lines:
+        # skip header lines
+        if line.strip().startswith("**ANSWER"):
+            continue
+        m = re.match(r"\s*(\d+)\.\s*([a-zA-Z])\)[\s-]*(.+)", line)
+        if m:
+            letter = m.group(2).strip()
+            answer_text = m.group(3).strip()
+            out.append(f"\\answer{{{letter}}} {answer_text}")
+    out.append("\\endanswerkey")
+    return "\n".join(out)
 
 
 if __name__ == "__main__":
