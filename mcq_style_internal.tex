@@ -1,4 +1,4 @@
-% MCQ Styling
+% MCQ Styling - Internal Version (Squares)
 
 % Box styling for questions
 \usepackage{tcolorbox}
@@ -23,27 +23,6 @@
   before={\par\vspace{0.05cm}}, % Reduced spacing before
   after={\par\vspace{0.05cm}},  % Reduced spacing after
 }
-
-% Define answer keys section with more compact layout
-\newcommand{\answerkey}{%
-  \chapter*{Answer Key}
-  \addcontentsline{toc}{chapter}{Answer Key}
-  \begin{center}
-    \Large\bfseries\textcolor{questblue}{Answer Key}
-  \end{center}
-  \vspace{0.5cm} % Reduced spacing
-  \begin{multicols}{4}
-    \begin{enumerate}
-      \setcounter{enumi}{0}
-      \setlength{\itemsep}{0pt} % Compact item spacing
-      \setlength{\parskip}{0pt} % Compact paragraph spacing
-}
-
-\newcommand{\endanswerkey}{%
-    \end{enumerate}%
-  \end{multicols}%
-}
-
 
 % Command for adding an answer - with symbol but no content highlighting
 \newcommand{\answer}[1]{%

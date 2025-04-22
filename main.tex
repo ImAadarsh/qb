@@ -12,6 +12,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{multicol}
 \usepackage{etoolbox}
+\usepackage{xstring} % For string comparison
 \usepackage{lipsum} % For demo text
 
 % Page geometry - tighter margins for more content per page
@@ -57,13 +58,61 @@
 \newcounter{totalcounter}
 \setcounter{totalcounter}{1} % Starting from 1
 
-% Choose MCQ style: 
-% For squares, uncomment the next line:
-\input{mcq_style}
-% For circles, uncomment the next line and comment the one above:
-%\input{mcq_style_alt}
-% For arrows, uncomment the next line and comment the two above:
-%\input{mcq_style_arrow}
+% Create a robust MCQ style system
+\makeatletter
+% First, define all our commands with a prefix to avoid conflicts
+\newcommand{\quest@answerkey}{%
+  \chapter*{Answer Key}
+  \addcontentsline{toc}{chapter}{Answer Key}
+  \begin{center}
+    \Large\bfseries\textcolor{questblue}{Answer Key}
+  \end{center}
+  \vspace{0.5cm} % Reduced spacing
+  \begin{multicols}{4}
+    \begin{enumerate}
+      \setcounter{enumi}{0}
+      \setlength{\itemsep}{0pt} % Compact item spacing
+      \setlength{\parskip}{0pt} % Compact paragraph spacing
+}
+
+\newcommand{\quest@closeanswer}{%
+    \end{enumerate}%
+  \end{multicols}%
+}
+
+% Now create the user-facing commands that will use our internal commands
+\newcommand{\answerkey}{\quest@answerkey}
+\newcommand{\closeanswer}{\quest@closeanswer}
+
+% Create a compatibility alias for old documents that use \endanswerkey
+\protected\def\endanswerkey{\closeanswer}
+
+% Choose MCQ style (uncomment exactly ONE of these lines):
+\def\mcqstyle{squares} % Options: squares, circles, arrows
+
+% Load the chosen style
+\ifx\mcqstyle\undefined
+  \def\mcqstyle{squares} % Default style if none specified
+\fi
+
+\ifx\mcqstyle\@empty
+  \def\mcqstyle{squares} % Default style if empty
+\fi
+
+% Load appropriate style file based on selection
+\IfStrEq{\mcqstyle}{squares}{%
+  \input{mcq_style_internal.tex}
+}{}
+
+\IfStrEq{\mcqstyle}{circles}{%
+  \input{mcq_style_alt_internal.tex}
+}{}
+
+\IfStrEq{\mcqstyle}{arrows}{%
+  \input{mcq_style_arrow_internal.tex}
+}{}
+
+\makeatother
 
 \input{section_cover}
 
@@ -519,7 +568,7 @@
 
 \setcounter{totalcounter}{1}
 
-\section{Statistics, Data Interpretation and Geometry}
+\section{Statistics Di Geometry}
 
 \input{tex_sections/statistics_di_geometry.tex}
 
