@@ -62,22 +62,20 @@
 \makeatletter
 % First, define all our commands with a prefix to avoid conflicts
 \newcommand{\quest@answerkey}{%
-  \chapter*{Answer Key}
-  \addcontentsline{toc}{chapter}{Answer Key}
+  \clearpage
   \begin{center}
     \Large\bfseries\textcolor{questblue}{Answer Key}
   \end{center}
   \vspace{0.5cm} % Reduced spacing
-  \begin{multicols}{4}
-    \begin{enumerate}
-      \setcounter{enumi}{0}
-      \setlength{\itemsep}{0pt} % Compact item spacing
-      \setlength{\parskip}{0pt} % Compact paragraph spacing
+  \begin{enumerate}
+    \setcounter{enumi}{0}
+    \setlength{\itemsep}{0.5em} % Increased spacing between items
+    \setlength{\parskip}{0pt} % Compact paragraph spacing
 }
 
 \newcommand{\quest@closeanswer}{%
-    \end{enumerate}%
-  \end{multicols}%
+  \end{enumerate}%
+  \clearpage
 }
 
 % Now create the user-facing commands that will use our internal commands
@@ -86,6 +84,17 @@
 
 % Create a compatibility alias for old documents that use \endanswerkey
 \protected\def\endanswerkey{\closeanswer}
+
+% Add command to ensure every subsection starts on a new page
+\newcommand{\newsection}[1]{%
+  \clearpage
+  \section{#1}
+}
+
+% Redefine answer command to remove the blue dot
+\newcommand{\answer}[1]{%
+  \item #1
+}
 
 % Choose MCQ style (uncomment exactly ONE of these lines):
 \def\mcqstyle{squares} % Options: squares, circles, arrows
@@ -160,47 +169,39 @@
 
 \setcounter{totalcounter}{1}
 
-\section{Basic Concepts Biology}
+\newsection{Basic Concepts Biology}
 
 \input{tex_sections/basic_concepts_biology.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/basic_concepts_biology_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Basic Concepts Chemistry}
+\newsection{Basic Concepts Chemistry}
 
 \input{tex_sections/basic_concepts_chemistry.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/basic_concepts_chemistry_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Basic Concepts Physics}
+\newsection{Basic Concepts Physics}
 
 \input{tex_sections/basic_concepts_physics.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/basic_concepts_physics_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Elements Compounds}
+\newsection{Elements Compounds}
 
 \input{tex_sections/elements_compounds.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/elements_compounds_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Honors}
+\newsection{Honors}
 
 \input{tex_sections/honors.tex}
 
@@ -210,7 +211,7 @@
 
 \setcounter{totalcounter}{1}
 
-\section{India Contribution Science}
+\newsection{India Contribution Science}
 
 \input{tex_sections/india_contribution_science.tex}
 
@@ -220,7 +221,7 @@
 
 \setcounter{totalcounter}{1}
 
-\section{Inventions}
+\newsection{Inventions}
 
 \input{tex_sections/inventions.tex}
 
@@ -230,7 +231,7 @@
 
 \setcounter{totalcounter}{1}
 
-\section{Mixed Bag Science}
+\newsection{Mixed Bag Science}
 
 \input{tex_sections/mixed_bag_science.tex}
 
