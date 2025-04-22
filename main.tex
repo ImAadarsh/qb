@@ -1,5 +1,5 @@
 % The Ultimate Quest - LaTeX Book
-\documentclass[12pt,a4paper]{book}
+\documentclass[12pt,a4paper,openany]{book}
 
 % Essential packages
 \usepackage[utf8]{inputenc}
@@ -36,15 +36,15 @@
 \titleformat{\chapter}[display]
 {\normalfont\huge\bfseries\color{questblue}}
 {\chaptertitlename\ \thechapter}{10pt}{\Huge}
-\titlespacing*{\chapter}{0pt}{30pt}{20pt}
+\titlespacing*{\chapter}{0pt}{20pt}{10pt}
 
 \titleformat{\section}
 {\normalfont\Large\bfseries\color{questblue}}
 {\thesection}{1em}{}
-\titlespacing*{\section}{0pt}{2.5ex plus 1ex minus .2ex}{1.3ex plus .2ex}
+\titlespacing*{\section}{0pt}{2ex plus .5ex minus .1ex}{1ex plus .1ex}
 
 % Global paragraph spacing reduction
-\setlength{\parskip}{0.5em}
+\setlength{\parskip}{0.3em}
 \setlength{\parindent}{0em}
 
 % Adjust float placement to be less strict
@@ -62,7 +62,7 @@
 \makeatletter
 % First, define all our commands with a prefix to avoid conflicts
 \newcommand{\quest@answerkey}{%
-  \clearpage
+  \vspace{0.8em} % Just add some vertical spacing instead of page break
   \begin{center}
     \Large\bfseries\textcolor{questblue}{Answer Key}
   \end{center}
@@ -75,7 +75,7 @@
 
 \newcommand{\quest@closeanswer}{%
   \end{enumerate}%
-  \clearpage
+  % Removed clearpage to let content flow naturally
 }
 
 % Now create the user-facing commands that will use our internal commands
@@ -85,10 +85,11 @@
 % Create a compatibility alias for old documents that use \endanswerkey
 \protected\def\endanswerkey{\closeanswer}
 
-% Add command to ensure every subsection starts on a new page
+% Add command to ensure every subsection starts on a new page, but with minimal spacing
 \newcommand{\newsection}[1]{%
-  \clearpage
+  \clearpage % Add page break before each section
   \section{#1}
+  \vspace{-0.5em} % Negative space to reduce gap before questions
 }
 
 % Redefine answer command to remove the blue dot
@@ -128,7 +129,7 @@
 % Adjust section cover spacing
 \makeatletter
 \renewcommand{\sectioncover}[3]{%
-  \cleardoublepage
+  \clearpage
   \thispagestyle{empty}
   \begin{center}
     \vspace*{2cm}
@@ -153,7 +154,7 @@
     \end{tcolorbox}
     \vspace{1.5cm}
   \end{center}
-  \cleardoublepage
+  \clearpage
 }
 \makeatother
 
@@ -205,8 +206,6 @@
 
 \input{tex_sections/honors.tex}
 
-\subsection*{Answer Key}
-
 \input{tex_sections/honors_answers.tex}
 
 \setcounter{totalcounter}{1}
@@ -214,8 +213,6 @@
 \newsection{India Contribution Science}
 
 \input{tex_sections/india_contribution_science.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/india_contribution_science_answers.tex}
 
@@ -225,8 +222,6 @@
 
 \input{tex_sections/inventions.tex}
 
-\subsection*{Answer Key}
-
 \input{tex_sections/inventions_answers.tex}
 
 \setcounter{totalcounter}{1}
@@ -235,99 +230,79 @@
 
 \input{tex_sections/mixed_bag_science.tex}
 
-\subsection*{Answer Key}
-
 \input{tex_sections/mixed_bag_science_answers.tex}
 
 \chapter{TECHNOLOGY}
 
 \setcounter{totalcounter}{1}
 
-\section{Communication Technology}
+\newsection{Communication Technology}
 
 \input{tex_sections/communication_technology.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/communication_technology_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{History Of Ai}
+\newsection{History Of Ai}
 
 \input{tex_sections/history_of_ai.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/history_of_ai_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Indias Contribution To Tech}
+\newsection{Indias Contribution To Tech}
 
 \input{tex_sections/indias_contribution_to_tech.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/indias_contribution_to_tech_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Mixed Bag 1}
+\newsection{Mixed Bag 1}
 
 \input{tex_sections/mixed_bag_1.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/mixed_bag_1_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Mixed Bag 2}
+\newsection{Mixed Bag 2}
 
 \input{tex_sections/mixed_bag_2.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/mixed_bag_2_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Mixed Bag 3}
+\newsection{Mixed Bag 3}
 
 \input{tex_sections/mixed_bag_3.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/mixed_bag_3_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Modern Technology}
+\newsection{Modern Technology}
 
 \input{tex_sections/modern_technology.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/modern_technology_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Space Technology}
+\newsection{Space Technology}
 
 \input{tex_sections/space_technology.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/space_technology_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Tech Companies People}
+\newsection{Tech Companies People}
 
 \input{tex_sections/tech_companies_people.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/tech_companies_people_answers.tex}
 
@@ -335,81 +310,65 @@
 
 \setcounter{totalcounter}{1}
 
-\section{Aerospace}
+\newsection{Aerospace}
 
 \input{tex_sections/aerospace.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/aerospace_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Chemical Engineering}
+\newsection{Chemical Engineering}
 
 \input{tex_sections/chemical_engineering.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/chemical_engineering_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Civil Engineering}
+\newsection{Civil Engineering}
 
 \input{tex_sections/civil_engineering.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/civil_engineering_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Computer Science}
+\newsection{Computer Science}
 
 \input{tex_sections/computer_science.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/computer_science_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Electrical Electronics}
+\newsection{Electrical Electronics}
 
 \input{tex_sections/electrical_electronics.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/electrical_electronics_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Indias Contribution To Engineering}
+\newsection{Indias Contribution To Engineering}
 
 \input{tex_sections/indias_contribution_to_engineering.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/indias_contribution_to_engineering_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Mixed Bag 1}
+\newsection{Mixed Bag 1}
 
 \input{tex_sections/mixed_bag_1.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/mixed_bag_1_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Mixed Bag 2}
+\newsection{Mixed Bag 2}
 
 \input{tex_sections/mixed_bag_2.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/mixed_bag_2_answers.tex}
 
@@ -417,81 +376,65 @@
 
 \setcounter{totalcounter}{1}
 
-\section{Arts Mixed Bag One}
+\newsection{Arts Mixed Bag One}
 
 \input{tex_sections/arts_mixed_bag_one.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/arts_mixed_bag_one_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Arts Mixed Bag Three}
+\newsection{Arts Mixed Bag Three}
 
 \input{tex_sections/arts_mixed_bag_three.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/arts_mixed_bag_three_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Arts Mixed Bag Two}
+\newsection{Arts Mixed Bag Two}
 
 \input{tex_sections/arts_mixed_bag_two.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/arts_mixed_bag_two_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Films And Media}
+\newsection{Films And Media}
 
 \input{tex_sections/films_and_media.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/films_and_media_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Folk Dances And Festivals Of India}
+\newsection{Folk Dances And Festivals Of India}
 
 \input{tex_sections/folk_dances_and_festivals_of_india.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/folk_dances_and_festivals_of_india_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Literature}
+\newsection{Literature}
 
 \input{tex_sections/literature.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/literature_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Pop Culture}
+\newsection{Pop Culture}
 
 \input{tex_sections/pop_culture.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/pop_culture_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Visual Arts And Paintings}
+\newsection{Visual Arts And Paintings}
 
 \input{tex_sections/visual_arts_and_paintings.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/visual_arts_and_paintings_answers.tex}
 
@@ -499,81 +442,65 @@
 
 \setcounter{totalcounter}{1}
 
-\section{History Of Math}
+\newsection{History Of Math}
 
 \input{tex_sections/history_of_math.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/history_of_math_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Math In Media}
+\newsection{Math In Media}
 
 \input{tex_sections/math_in_media.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/math_in_media_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Math Puzzles}
+\newsection{Math Puzzles}
 
 \input{tex_sections/math_puzzles.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/math_puzzles_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Math Trivia}
+\newsection{Math Trivia}
 
 \input{tex_sections/math_trivia.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/math_trivia_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Mixed Bag 1}
+\newsection{Mixed Bag 1}
 
 \input{tex_sections/mixed_bag_1.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/mixed_bag_1_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Mixed Bag 2}
+\newsection{Mixed Bag 2}
 
 \input{tex_sections/mixed_bag_2.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/mixed_bag_2_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Probability Permutation Combination}
+\newsection{Probability Permutation Combination}
 
 \input{tex_sections/probability_permutation_combination.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/probability_permutation_combination_answers.tex}
 
 \setcounter{totalcounter}{1}
 
-\section{Statistics Di Geometry}
+\newsection{Statistics Data Interpretation And Geometry}
 
 \input{tex_sections/statistics_di_geometry.tex}
-
-\subsection*{Answer Key}
 
 \input{tex_sections/statistics_di_geometry_answers.tex}
 
