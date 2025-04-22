@@ -15,47 +15,6 @@ Generate a single LaTeX file that:
 5. Does not visually distinguish correct answers within questions
 6. Ensures questions don't break across pages
 
-## Structure of a Question
-Convert questions like this:
-```markdown
-1. Which art movement is characterized by dreamlike imagery?  
-   a) Impressionism b) Surrealism c) Cubism
-
-
-1. Who wrote the epic poem "The Aeneid", and what is its significance in Roman literature?
-
-   1) Virgil
-
-   2) Homer
-
-   3) Ovid
-
-
-
-```
-
-Into LaTeX format like this:
-```latex
-\begin{enhancedmcq}[Question 1]{Which art movement is characterized by dreamlike imagery?}
-    \incorrectoption{Impressionism}
-    \incorrectoption{Surrealism}
-    \incorrectoption{Cubism}
-\end{enhancedmcq}
-```
-
-## Answer Key Format
-Parse answer sections like:
-```markdown
-**Answer Key**
-1. b - Surrealism
-2. c - Pablo Picasso
-```
-
-And generate LaTeX answer entries:
-```latex
-\answer{b}
-\answer{c}
-```
 
 ## Complete Document Structure
 Use the existing files and build a document with:
@@ -65,3 +24,5 @@ Use the existing files and build a document with:
 4. Answer key at the end
 
 Please process all the files and generate the complete LaTeX document for compilation.
+
+Start With the First File ARTS 400 questions.md
